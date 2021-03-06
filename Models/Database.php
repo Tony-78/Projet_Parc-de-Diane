@@ -29,4 +29,3 @@ class Database {
     }
 }
 
-// DB à modifier

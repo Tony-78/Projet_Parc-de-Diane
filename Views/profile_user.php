@@ -32,8 +32,11 @@ require "../Controllers/profile_user-controller.php";
                 if ($_SESSION["passwordMessage"] == "error") {
             ?>
                     <div class="container-fluid">
-                        <div class="alert alert-danger text-center my-3">
+                        <div class="alert alert-danger alert-dismissible fade show text-center my-3" role="alert">
                             <p>Il y a eu une erreur lors de la modification de votre mot de passe.</p>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
                     </div>
             <?php
@@ -57,8 +60,11 @@ require "../Controllers/profile_user-controller.php";
                                 if ($_SESSION["updateInfoMessage"] == "success") {
                             ?>
                                     <div class="container-fluid">
-                                        <div class="alert alert-success text-center mt-3">
+                                        <div class="alert alert-success alert-dismissible fade show text-center mt-3" role="alert">
                                             <p>Votre profil a bien été modifié.</p>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                     </div>
                                 <?php
@@ -66,8 +72,11 @@ require "../Controllers/profile_user-controller.php";
                                 } else {
                                 ?>
                                     <div class="container-fluid">
-                                        <div class="alert alert-danger text-center mt-3">
+                                        <div class="alert alert-danger alert-dismissible fade show text-center mt-3" role="alert">
                                             <p>Il y a eu une erreur lors de la modification de vos données.</p>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                     </div>
                             <?php

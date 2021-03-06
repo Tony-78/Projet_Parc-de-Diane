@@ -271,13 +271,106 @@ class Users extends Database {
      * @return boolean
      */
     public function deleteUser(int $idUsername) {
-        $query = "DELETE FROM `Users` WHERE `username_id` = :id;";
+        $query = "DELETE FROM `Users` WHERE `username_id` = :id AND `Users`.`user_status_id` = 2";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("id", $idUsername, PDO::PARAM_STR);
         return $buildQuery->execute();
     }
+    
 
+    /**
+     * Méthode qui permet de récupérer les informations d'un compte user
+     * 
+     * @return array|boolean
+     */
+    public function getAllUsersInformations() {
+        $query = "SELECT `Usernames`.`username_username`, `Users`.`user_lastname`, `Users`.`user_firstname`,
+                    `Users`.`user_mail`, `Users`.`user_tel`, `Users`.`username_id`
+                    FROM `Users`
+                    INNER JOIN `Usernames`
+                    ON `Usernames`.`username_id` = `Users`.`username_id`
+                    WHERE `Users`.`user_status_id` = 2;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false; 
+        }
+    }
+
+
+    /**
+     * Méthode qui permet de rechercher un utilisateur par son nom, prénom ou identifiant
+     * 
+     * @param string
+     * @return array|boolean
+     */
+    public function searchUser(string $search) {
+        $query = "SELECT * FROM `Users` 
+                    INNER JOIN `Usernames`
+                    ON `Usernames`.`username_id` = `Users`.`username_id`
+                    WHERE `Users`.`user_lastname` LIKE :search1
+                    OR `Users`.`user_firstname` LIKE :search2 
+                    OR `Usernames`.`username_username` LIKE :search3
+                    ORDER BY `Users`.`user_lastname`;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("search1", $search, PDO::PARAM_STR);
+        $buildQuery->bindValue("search2", $search, PDO::PARAM_STR);
+        $buildQuery->bindValue("search3", $search, PDO::PARAM_STR);
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Méthode qui permet de compter le nombre d'utilisateurs en base de données
+     * 
+     * @return array|boolean
+     */
+    public function countUsers() {
+        $query = "SELECT COUNT(*) AS `countUsers` FROM `Users` WHERE `Users`.`user_status_id` = 2 ;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->execute();
+        $countPatients = $buildQuery->fetch(PDO::FETCH_ASSOC);
+        if(!empty($countPatients)) {
+            return $countPatients;
+        } else {
+            return false;
+        }
+    }
+    
+
+    /**
+     * Méthode qui permet de récupérer 10 utilisateurs en fonction d'une valeur de début
+     * 
+     * @param int
+     * @return array|boolean
+     */
+    public function getUsersPaginate(int $startValue) {
+        $query = "SELECT * FROM `Users`
+        INNER JOIN `Usernames`
+        ON `Usernames`.`username_id` = `Users`.`username_id`
+        WHERE `Users`.`user_status_id` = 2
+        LIMIT :startValue, 10;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("startValue", $startValue, PDO::PARAM_INT);
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
 }
+
 
 
 

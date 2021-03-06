@@ -38,15 +38,25 @@ require "../Controllers/login-controller.php";
                         if (isset($_SESSION["registerMessage"])) {
                             if ($_SESSION["registerMessage"] == "success") {
                         ?>
-                                <div class="alert alert-success text-center my-5">
-                                    <p>Votre inscription a bien été prise en compte. Vous pouvez dès à présent vous connecter.</p>
+                                <div class="container">
+                                    <div class="alert alert-success alert-dismissible fade show text-center my-5" role="alert">
+                                        <p>Votre inscription a bien été prise en compte. Vous pouvez dès à présent vous connecter.</p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 </div>
                             <?php
                                 unset($_SESSION["registerMessage"]);
                             } else {
                             ?>
-                                <div class="alert alert-danger text-center my-5">
-                                    <p>Il y a eu une erreur lors de l'inscription.</p>
+                                <div class="container">
+                                    <div class="alert alert-danger alert-dismissible fade show text-center my-5" role="alert">
+                                        <p>Il y a eu une erreur lors de l'inscription.</p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 </div>
                             <?php
                                 unset($_SESSION["registerMessage"]);
@@ -56,8 +66,13 @@ require "../Controllers/login-controller.php";
                         if (isset($_SESSION["connexionErrorMessage"])) {
                             if ($_SESSION["connexionErrorMessage"] == "error") {
                             ?>
-                                <div class="alert alert-danger text-center my-5">
-                                    <p>Vérifiez vos informations de connexion.</p>
+                                <div class="container">
+                                    <div class="alert alert-danger alert-dismissible fade show text-center my-5" role="alert">
+                                        <p>Vérifiez vos informations de connexion.</p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 </div>
                             <?php
                                 unset($_SESSION["connexionErrorMessage"]);
@@ -67,8 +82,13 @@ require "../Controllers/login-controller.php";
                         if (isset($_SESSION["passwordMessage"])) {
                             if ($_SESSION["passwordMessage"] == "success") {
                             ?>
-                                <div class="alert alert-success text-center my-5">
-                                    <p>Votre mot de passe a bien été modifié.</p>
+                                <div class="container">
+                                    <div class="alert alert-success alert-dismissible fade show text-center my-5" role="alert">
+                                        <p>Votre mot de passe a bien été modifié.</p>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
                                 </div>
                         <?php
                                 unset($_SESSION["passwordMessage"]);
