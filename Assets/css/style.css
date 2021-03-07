@@ -55,7 +55,7 @@ html, body {
 /* format tablette */
 @media (min-width: 450px) and (max-width: 768px) {
     .tennis-img {
-        background: url("../img/testimg.jpg") !important;
+        background: url("../img/tennis-ipad.jpg") !important;
         background-size: cover !important;
         background-position: center !important;
     }
@@ -70,7 +70,7 @@ html, body {
         background-position: center !important;
     }
     .boulangerie-img {
-        background: url("../img/pharmacie-ipad.jpg") !important;
+        background: url("../img/boulangerie.jpg") !important;
         background-size: cover !important;
         background-position: center !important;
     }
@@ -85,10 +85,46 @@ html, body {
         background-position: center !important;
     }
     .transports-img {
-        background: url("../img/transports.jpg") !important;
+        background: url("../img/transports-ipad.jpg") !important;
         background-size: cover !important;
         background-position: center !important;
     }
+    .jeux-img {
+        background: url("../img/jeux-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .ping-pong-img {
+        background: url("../img/ping-pong-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .club-house-img {
+        background: url("../img/club-house-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .piscine-img {
+        background: url("../img/piscine-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .dentiste-img {
+        background: url("../img/dentiste-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .medecin-img {
+        background: url("../img/medecin-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+    .loge-gardien-img {
+        background: url("../img/loge-gardien-ipad.jpg") !important;
+        background-size: cover !important;
+        background-position: center !important;
+    }
+
 
     .margin-content {
         margin-top: 2.5rem!important;
@@ -159,7 +195,7 @@ html, body {
 }
 
 .boulangerie-img {
-    background: url("../img/boulangerie2.jpg");
+    background: url("../img/boulangerie.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -178,6 +214,48 @@ html, body {
 
 .transports-img {
     background: url("../img/transports.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.jeux-img {
+    background: url("../img/jeux.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.ping-pong-img {
+    background: url("../img/ping-pong.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.club-house-img {
+    background: url("../img/club-house.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.piscine-img {
+    background: url("../img/piscine.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.dentiste-img {
+    background: url("../img/dentiste.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.medecin-img {
+    background: url("../img/medecin.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.loge-gardien-img {
+    background: url("../img/loge-gardien.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -296,4 +374,17 @@ html, body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+}
+
+
+
+
+
+.boxPicture {
+    margin: 1rem;
+    justify-content: center;
+    border: solid 1px #7B7788;
+    border-radius: 5px;
+    width: 18rem;
+    height: 12rem;
 }

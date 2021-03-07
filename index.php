@@ -8,6 +8,10 @@ require "Controllers/index-controller.php";
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
   <!-- Polices -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
   <!-- Bootstrap -->
@@ -44,40 +48,50 @@ require "Controllers/index-controller.php";
             <a class="nav-link" href="Views/services.php">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Annonces</a>
+            <a class="nav-link" href="Views/announces.php">Annonces</a>
           </li>
         </ul>
 
         <?php
         if (isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] == "admin") {
         ?>
-          <ul class="navbar-nav ml-auto w-100 justify-content-end">
-            <a class="btn btn-success my-2 my-sm-0" href="Views/profile_admin.php" id="login_button">Mon dashboard</a>
-          </ul>
-          <ul class="navbar-nav ml-auto">
-            <form action="index.php" method="post">
-              <button type="submit" name="SignOutButton" class="btn btn-success my-2 my-sm-0">Se déconnecter</button>
-            </form>
-          </ul>
+          <div class="dropdown navbar-nav ml-auto" id="login_button">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user mr-1"></i>
+            <?=  $_SESSION["user"]["lastname"] . " " . $_SESSION["user"]["firstname"] ?>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="Views/profile_admin.php">Tableau de board</a>
+              <form action="index.php" method="post">
+                <button type="submit" name="SignOutButton" class="dropdown-item">Se déconnecter</button>
+              </form>
+            </div>
+          </div>
         <?php
         } else if (isset($_SESSION["user"]["role"]) && $_SESSION["user"]["role"] == "user") {
         ?>
-        <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
-          <ul class="navbar-item">
-            <a class="btn btn-success my-2 my-sm-0 w-100" id="profile_button" href="Views/profile_user.php">Mon profil</a>
-          </ul>
-          <li class="navbar-item">
-            <form action="index.php" method="post">
-              <button type="submit" name="SignOutButton" id="sign_out_button" class="btn btn-success my-2 my-sm-0">Se déconnecter</button>
-            </form>
-          </li>
-        </ul>
+          <div class="dropdown navbar-nav ml-auto" id="login_button">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user mr-1"></i>
+            <?=  $_SESSION["user"]["lastname"] . " " . $_SESSION["user"]["firstname"] ?>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="Views/profile_user.php">Mon profil</a>
+              <form action="index.php" method="post">
+                <button type="submit" name="SignOutButton" class="dropdown-item">Se déconnecter</button>
+              </form>
+            </div>
+          </div>
         <?php
         } else {
         ?>
-          <ul class="navbar-nav ml-auto">
-            <a class="btn btn-success my-2 my-sm-0" href="Views/login.php" id="login_button">Connexion</a>
-          </ul>
+          <div class="dropdown navbar-nav ml-auto" id="login_button">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Accès adhérent
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="Views/login.php">Connexion</a>
+              <a class="dropdown-item" href="Views/register.php">Inscription</a>
+            </div>
+          </div>
         <?php
         }
         ?>
@@ -87,7 +101,7 @@ require "Controllers/index-controller.php";
 
 
 
-  <div class="container-fluid mt-5 wallpaper">
+  <div class="container-fluid wallpaper">
 
   </div>
 

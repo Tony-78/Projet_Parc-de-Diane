@@ -57,7 +57,7 @@ require "../Controllers/activities-controller.php";
             </div>
 
             <div class="row activities-height">
-                <div class="col-md-6 tennis-img img-col-height">
+                <div class="col-md-6 piscine-img img-col-height">
 
                 </div>
 
@@ -86,13 +86,13 @@ require "../Controllers/activities-controller.php";
                     </div>
                 </div>
 
-                <div class="col-md-6 tennis-img img-col-height order-1 order-md-2">
+                <div class="col-md-6 club-house-img img-col-height order-1 order-md-2">
 
                 </div>
             </div>
 
             <div class="row activities-height">
-                <div class="col-md-6 tennis-img img-col-height">
+                <div class="col-md-6 ping-pong-img img-col-height">
 
                 </div>
 
@@ -120,7 +120,7 @@ require "../Controllers/activities-controller.php";
                     </div>
                 </div>
 
-                <div class="col-md-6 tennis-img img-col-height order-1 order-md-2">
+                <div class="col-md-6 jeux-img img-col-height order-1 order-md-2">
 
                 </div>
             </div>

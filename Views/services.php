@@ -71,13 +71,13 @@ require "../Controllers/services-controller.php";
                     </div>
                 </div>
 
-                <div class="col-md-6 tennis-img img-col-height order-1 order-md-2">
+                <div class="col-md-6 medecin-img img-col-height order-1 order-md-2">
                     
                 </div>
             </div>
 
             <div class="row services-height">
-                <div class="col-md-6 tennis-img img-col-height">
+                <div class="col-md-6 dentiste-img img-col-height">
                     
                 </div>
                 
@@ -147,7 +147,7 @@ require "../Controllers/services-controller.php";
                     </div>
                 </div>
 
-                <div class="col-md-6 tennis-img img-col-height order-1 order-md-2">
+                <div class="col-md-6 pharmacie-img img-col-height order-1 order-md-2">
                     
                 </div>
             </div>
@@ -209,7 +209,7 @@ require "../Controllers/services-controller.php";
                     </div>
                 </div>
 
-                <div class="col-md-6 tennis-img img-col-height order-1 order-md-2">
+                <div class="col-md-6 loge-gardien-img img-col-height order-1 order-md-2">
                     
                 </div>
             </div>
