@@ -9,9 +9,7 @@ require "Controllers/index-controller.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
-        crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
   <!-- Polices -->
   <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
   <!-- Bootstrap -->
@@ -57,7 +55,7 @@ require "Controllers/index-controller.php";
         ?>
           <div class="dropdown navbar-nav ml-auto" id="login_button">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user mr-1"></i>
-            <?=  $_SESSION["user"]["lastname"] . " " . $_SESSION["user"]["firstname"] ?>
+              <?= $_SESSION["user"]["lastname"] . " " . $_SESSION["user"]["firstname"] ?>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="Views/profile_admin.php">Tableau de board</a>
@@ -71,7 +69,7 @@ require "Controllers/index-controller.php";
         ?>
           <div class="dropdown navbar-nav ml-auto" id="login_button">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-user mr-1"></i>
-            <?=  $_SESSION["user"]["lastname"] . " " . $_SESSION["user"]["firstname"] ?>
+              <?= $_SESSION["user"]["lastname"] . " " . $_SESSION["user"]["firstname"] ?>
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="Views/profile_user.php">Mon profil</a>
@@ -182,7 +180,7 @@ require "Controllers/index-controller.php";
     <div class="white-divider mb-5"></div>
     <div class="card-deck">
       <div class="card">
-        <img class="card-img-top" src="assets/img/tennis.jpg" alt="">
+        <img class="card-img-top img-card-news-size" src="assets/img/virus.jpg" alt="">
         <div class="card-body">
           <h5 class="card-title text-center">COVID-19</h5>
           <p class="card-text my-4 text-center">"Porter un masque, pour mieux nous protéger"</p>
@@ -192,7 +190,7 @@ require "Controllers/index-controller.php";
         </div>
       </div>
       <div class="card">
-        <img class="card-img-top" src="assets/img/tennis.jpg" alt="">
+        <img class="card-img-top img-card-news-size" src="assets/img/anniversairepdd.jpg" alt="">
         <div class="card-body">
           <h5 class="card-title text-center">Anniversaire du Parc de Diane</h5>
           <p class="card-text my-4 text-center">En 2021 nous allons fêter les 50 ans du Parc de Diane</p>
@@ -202,9 +200,9 @@ require "Controllers/index-controller.php";
         </div>
       </div>
       <div class="card">
-        <img class="card-img-top" src="assets/img/tennis.jpg" alt="">
+        <img class="card-img-top img-card-news-size" src="assets/img/local-velo.jpg" alt="">
         <div class="card-body">
-          <h5 class="card-title text-center">Mise en peinture ???</h5>
+          <h5 class="card-title text-center">Travaux</h5>
           <p class="card-text my-4 text-center">Travaux de peinture dans les locaux à vélos du 18/01/21 au 23/01/21 </p>
         </div>
         <div class="card-footer text-center">
@@ -215,36 +213,65 @@ require "Controllers/index-controller.php";
   </div>
 
 
-
-  <div class="container">
-    <h1 class="text-center mb-3">bngdfbndgfd</h1>
+<!--
+  <div class="container mt-5">
+    <h1 class="text-center mb-3">Que trouve t-on au Parc de Diane ?</h1>
     <div class="white-divider mb-5"></div>
     <div class="row">
+
       <div class="col-sm-6 p-0 recap-img">
         <div class="oaoa">
           <a href="Views/commerces.php">
-            <img src="Assets/img/testimg.jpg" class="card-img-top" alt="...">
+            <img src="Assets/img/pharmacie.jpg " class="card-img-top img-card-news-size" alt="...">
             <h2>Commerces</h2>
           </a>
         </div>
       </div>
       <div class="col-sm-6 p-0 recap-img">
-        <a href="Views/activités.php"><img src="Assets/img/testimg.jpg" class="card-img-top" alt="..."></a>
-        <h2>Activités</h2>
+        <div class="card">
+          <a href="Views/activités.php"><img src="Assets/img/tennis.jpg" class="card-img-top img-card-news-size" alt="..."></a>
+          <h2>Activités</h2>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-6 p-0 recap-img">
+          <div class="card">
+            <a href="Views/services.php"><img src="Assets/img/transports.jpg" class="card-img-top img-card-news-size" alt="..."></a>
+            <h2>Services</h2>
+          </div>
+        </div>
+        <div class="col-sm-6 p-0 recap-img">
+          <div class="card">
+            <a href="Views/services.php"><img src="Assets/img/petites-annonces.jpg" class="card-img-top img-card-news-size" alt="..."></a>
+            <h2>Annonces</h2>
+          </div>
+        </div>
+
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6 p-0 recap-img">
-        <a href="Views/services.php"><img src="Assets/img/testimg.jpg" class="card-img-top" alt="..."></a>
-        <h2>Services</h2>
+  </div> -->
+
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-6">
+        <img class="img-card-size " src="Assets/img/pharmacie.jpg" alt="Card image cap">
       </div>
-      <div class="col-sm-6 p-0 recap-img">
-        <a href="Views/services.php"><img src="Assets/img/testimg.jpg" class="card-img-top" alt="..."></a>
-        <h2>Annonces</h2>
+      <div class="col-6">
+        <img class=" img-card-size" src="Assets/img/tennis.jpg" alt="Card image cap">
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-6">
+        <img class=" img-card-size" src="Assets/img/transports.jpg" alt="Card image cap">
+      </div>
+      <div class="col-6">
+        <img class="img-card-size " src="Assets/img/petites-annonces.jpg" alt="Card image cap">
       </div>
     </div>
   </div>
-
+  </div>
 
 
 

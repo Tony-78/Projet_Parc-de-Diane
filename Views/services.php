@@ -31,9 +31,12 @@ require "../Controllers/services-controller.php";
         <div class="container-fluid">
             <div class="container">
                 <div class="row my-5 justify-content-center ">
-                    <img src="../Assets/img/testimg.jpg" alt="" class="w-100">
+                    <img src="../Assets/img/wallpaper-services.jpg" alt="" class="w-100">
                 </div>
             </div>
+            <div class="container-fluid wallpaper-services">
+
+  </div>
             
             <div class="row justify-content-center my-5">
                 <h4>Les résidents ont la chance de disposer de quelques commerces au sein du Parc de Diane</h4>

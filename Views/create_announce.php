@@ -26,45 +26,54 @@ require "../Controllers/create_announce-controller.php";
     <?php include "includes/navbar.php"; ?>
 
 
-        <h3 class="text-center mt-5">Annonces</h3>
-        <div class="container mt-5">
-            <div class="row justify-content-center align-items-center">
-                <div class="col-md-6">
-                    <form class="form" action="" method="post">
-                        <h1 class="text-center text-info">Publication d'une annonce</h1>
-                        <div class="line-login mx-auto"></div>
-                        <div class="form-user mt-5">
-                            <label for="announceTitle">Titre de l'annonce :</label>
-                            <input type="text" name="announceTitle" id="announceTitle" class="form-control background-login-input" placeholder="Titre de l'annonce" maxlength="50" value="<?= isset($verifiedAnnounceTitle) ? $verifiedAnnounceTitle : "" ?>">
-                            <span style="color:red;"><?= isset($arrayErrors["announceTitle"]) ? $arrayErrors["announceTitle"] : "" ?></span>
-                        </div>
-                        <div class="form-user mt-3">
-                            <label for="announceCategory">Catégorie de l'annonce :</label>
-                            <select name="announceCategory" id="announceCategory">
-                                <option value="Veuillez choisir" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Veuillez choisir") ? "selected" : "" ?>>Veuillez choisir</option>
-                                <option value="Cours particuliers" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Cours particuliers") ? "selected" : "" ?>>Cours particuliers</option>
-                                <option value="Garde d'enfants" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Garde d'enfants") ? "selected" : "" ?>>Garde d'enfants</option>
-                                <option value="Mobilier" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Mobilier") ? "selected" : "" ?>>Mobilier</option>
-                                <option value="Multimédia" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Multimédia") ? "selected" : "" ?>>Multimédia</option>
-                                <option value="Autres" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Autres") ? "selected" : "" ?>>Autres</option>
-                            </select>
-                            <span style="color:red;"><?= isset($arrayErrors["announceCategory"]) ? $arrayErrors["announceCategory"] : "" ?></span>
-                        </div>
-                        <div class="form-user mt-3">
-                            <label for="announceDescription">Description de l'annonce :</label>
-                            <textarea id="announceDescription" name="announceDescription" rows="6" class="form-control background-login-input" maxlength="350" placeholder="Veuillez décrire votre annonce" ><?= isset($verifiedAnnounceDescription) ? $verifiedAnnounceDescription : "" ?></textarea>
-                            <span style="color:red;"><?= isset($arrayErrors["announceDescription"]) ? $arrayErrors["announceDescription"] : "" ?></span>
-                        </div>
+    <h3 class="text-center mt-5">Annonces</h3>
+    <div class="container mt-5">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-6">
+                <form class="form" enctype="multipart/form-data" action="create_announce.php" method="post">
+                    <h1 class="text-center text-info">Publication d'une annonce</h1>
+                    <div class="line-login mx-auto"></div>
+                    <div class="form-user mt-5">
+                        <label for="announceTitle">Titre de l'annonce :</label>
+                        <input type="text" name="announceTitle" id="announceTitle" class="form-control background-login-input" placeholder="Titre de l'annonce" maxlength="50" value="<?= isset($verifiedAnnounceTitle) ? $verifiedAnnounceTitle : "" ?>">
+                        <span style="color:red;"><?= isset($arrayErrors["announceTitle"]) ? $arrayErrors["announceTitle"] : "" ?></span>
+                    </div>
+                    <div class="form-user mt-3">
+                        <label for="announceCategory">Catégorie de l'annonce :</label>
+                        <select name="announceCategory" id="announceCategory">
+                            <option value="Veuillez choisir" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "Veuillez choisir") ? "selected" : "" ?>>Veuillez choisir</option>
+                            <option value="1" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "1") ? "selected" : "" ?>>Cours particuliers</option>
+                            <option value="2" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "2") ? "selected" : "" ?>>Garde d'enfants</option>
+                            <option value="3" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "3") ? "selected" : "" ?>>Mobilier</option>
+                            <option value="4" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "4") ? "selected" : "" ?>>Multimédia</option>
+                            <option value="5" <?= isset($_POST["announceCategory"]) && ($_POST["announceCategory"] == "5") ? "selected" : "" ?>>Autres</option>
+                        </select>
+                        <span style="color:red;"><?= isset($arrayErrors["announceCategory"]) ? $arrayErrors["announceCategory"] : "" ?></span>
+                    </div>
+                    <div class="form-user mt-3">
+                        <label for="announceDescription">Description de l'annonce :</label>
+                        <textarea id="announceDescription" name="announceDescription" rows="6" class="form-control background-login-input" maxlength="300" placeholder="Veuillez décrire votre annonce"><?= isset($verifiedAnnounceDescription) ? $verifiedAnnounceDescription : "" ?></textarea>
+                        <span style="color:red;"><?= isset($arrayErrors["announceDescription"]) ? $arrayErrors["announceDescription"] : "" ?></span>
+                    </div>
 
-
-                        <div class="mt-4 d-flex justify-content-between">
-                            <input type="submit" name="addAnnounce" class="btn btn-info btn-md addUser" value="Publier">
-                            <a class="btn btn-secondary btn-md" href="create_announce.php">Réinitialiser</a>
+                    <div class="form-user mt-3">
+                        <div>
+                            <label for="imgToUpload">Choisir une image (optionnel) :</label>
                         </div>
-                    </form>
-                </div>
+                        <div>
+                            <input class="textUpload" type="file" id="imgToUpload" name="imgToUpload">
+                        </div>
+                        <span style="color:red;"><?= isset($arrayErrors["imgToUpload"]) ? $arrayErrors["imgToUpload"]  : "" ?></span>
+                    </div>
+
+                    <div class="mt-4 d-flex justify-content-between">
+                        <input type="submit" name="addAnnounce" class="btn btn-info btn-md addUser" value="Publier">
+                        <a class="btn btn-secondary btn-md" href="create_announce.php">Réinitialiser</a>
+                    </div>
+                </form>
             </div>
         </div>
+    </div>
 
 
 

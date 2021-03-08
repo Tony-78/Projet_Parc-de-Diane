@@ -25,8 +25,35 @@ require "../Controllers/announces-controller.php";
 
     <h3 class="text-center mt-5">Annonces</h3>
     <div class="white-divider mb-5"></div>
-
-
+    <?php
+    if (isset($_SESSION["announceMessage"])) {
+        if ($_SESSION["announceMessage"] == "success") {
+    ?>
+            <div class="container">
+                <div class="alert alert-success alert-dismissible fade show text-center mt-3" role="alert">
+                    <p>Votre annonce a bien été ajoutée.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php
+            unset($_SESSION["announceMessage"]);
+        } else {
+        ?>
+            <div class="container">
+                <div class="alert alert-danger alert-dismissible fade show text-center mt-3" role="alert">
+                    <p>Il y a eu une erreur lors de la création de l'annonce.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+    <?php
+            unset($_SESSION["announceMessage"]);
+        }
+    }
+    ?>
     </div>
     <?php
     if (!isset($_SESSION["user"])) {
@@ -39,149 +66,66 @@ require "../Controllers/announces-controller.php";
     <?php
     } else {
     ?>
- <div class="container">
-    <a href="create_announce.php" class="btn btn-primary">Ajouter une annonce</a>   
-    </div>
+        <div class="container">
+            <a href="create_announce.php" class="btn btn-primary">Ajouter une annonce</a>
+        </div>
 
         <div class="container">
             <div class="row ng-scope">
                 <div class="card-group">
-                    <div class="col-lg-6">
-                        <div class="border shadow h-100">
-                            <div class="row ">
-                                <div class="col-sm-5">
-                                    <img class="image boxPicture" src="../Assets/img/tennis.jpg">
+                    <?php
+                    if (!empty($allAnnounces)) {
+                        foreach ($allAnnounces as $announceValue) {
+                    ?>
+                            <div class="col-lg-6 mt-3">
+                                <div class="border shadow h-100">
+                                    <div class="row ">
+                                        <div class="col-sm-5">
+                                            <img class="boxPicture" src="../Assets/img/img-announces/<?= !is_null($announceValue["announce_picture"]) ? $announceValue["announce_picture"] : "default.png" ?>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <p class="value3 px-3 mb-0"><?= strftime("%d/%m/%Y",strtotime($announceValue["announce_create_date"])) ?></p>
+                                            <p class="fs-mini text-muted px-3 mb-1">Contact : <?= $announceValue["user_tel"] ?>
+                                            <?php
+                                            if (($_SESSION["user"]["id"]) == ($announceValue["user_id"])) {
+                                            ?>
+                                                <button type="button" class="btn btn-success btn-sm ml-3 mb-2" title="Modifier"><i class="far fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm mb-2" title="Supprimer"><i class="far fa-trash-alt"></i></button>
+                                            <?php
+                                            }
+                                            ?>
+                                            
+                                            </p>
+                                            <p class="fs-mini text-muted px-3"><?= $announceValue["announce_category_name"] ?></p>
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            
+                                            <h4 class="search-result-item-heading px-3"><?= $announceValue["announce_title"] ?></h4>
+                                            <p class="description px-3 text-justify"><?= $announceValue["announce_description"] ?></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <p class="value3 px-2 mb-0">06 mars 2021</p>
-                                    <h4 class="search-result-item-heading px-2">Donne cours de français</h4>
-                                    <p class="description px-2"> Not just usual Metro. But something bigger</p>
-                                </div>
-                                <div class="col-sm-3 text-align-center">
-
-                                    <p class="fs-mini text-muted">Contact : <br>0504030201</p>
-
-
-                                    <p class="fs-mini text-muted">N° résident : <br>999999</p>
-
-
-                                    <button type="button" class="btn btn-danger mb-5"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-danger mb-5"><i class="far fa-trash-alt"></i></button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="border shadow h-100">
-                            <div class="row ">
-                                <div class="col-sm-5">
-                                    <img class="image boxPicture" src="../Assets/img/tennis.jpg">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <p class="value3 px-2 mb-0">06 mars 2021</p>
-                                    <h4 class="search-result-item-heading px-2"> Donnrs de français Donne cours de français français frança</h4>
-                                    <p class="description px-2 text-justify">Not just usual Metro. But something bigger. Not just usual widgets, but real widgets. Not just yet another admin template, but next generation admin template.Not just usual widgets, but real widgets. Not just yet another admin template, but next generation admin template.tion admin template. tion admin template. tion admin template. tion admin temp on admin template. tion admin temp on admin template. tion adm</p>
-                                </div>
-                                <div class="col-sm-3 text-align-center">
-
-                                    <p class="fs-mini text-muted">Contact : <br>0504030201</p>
-
-
-                                    <p class="fs-mini text-muted">N° résident : <br>999999</p>
-
-
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-
-                                </div>
+                        <?php
+                        }
+                    } else {
+                        ?>
+                        <div>
+                            <div>
+                                <p class="text-center mt-5">Il n'y a aucune annonce.</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="border shadow h-100">
-                            <div class="row ">
-                                <div class="col-sm-5">
-                                    <img class="image boxPicture" src="../Assets/img/tennis.jpg">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <p class="value3 px-2 mb-0">06 mars 2021</p>
-                                    <h4 class="search-result-item-heading px-2"> Donne cours de français Donne cours de français Donne cours de français</h4>
-                                    <p class="description px-2">Not just usual Metro. But something bigger. Not just usual widgets, but real widgets. Not just yet another admin template, but next generation admin template.Not just usual widgets, but real widgets. Not just yet another admin template, but next generation admin template.</p>
-                                </div>
-                                <div class="col-sm-3 text-align-center">
-
-                                    <p class="fs-mini text-muted">Contact : <br>0504030201</p>
-
-
-                                    <p class="fs-mini text-muted">N° résident : <br>999999</p>
-
-
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="border shadow h-100">
-                            <div class="row ">
-                                <div class="col-sm-5">
-                                    <img class="image boxPicture" src="../Assets/img/tennis.jpg">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <p class="value3 px-2 mb-0">06 mars 2021</p>
-                                    <h4 class="search-result-item-heading px-2"> Donneçais Donne cours de français Donne cours de français</h4>
-                                    <p class="description px-2">Not just usual Metro. But something bigger. Not just usual widgets, but real widgets. Not just yet another admin template, but next generation admin template.Not just usual widgets, but real widgets. Not just yet another admin template, but next generation admin template.</p>
-                                </div>
-                                <div class="col-sm-3 text-align-center">
-
-                                    <p class="fs-mini text-muted">Contact : <br>0504030201</p>
-
-
-                                    <p class="fs-mini text-muted">N° résident : <br>999999</p>
-
-
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-                                    <button type="button" class="btn btn-danger"><i class="far fa-trash-alt"></i></button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
-
-
-        <!-- <div class="col-lg-4 col-md-6 col-sm-12 mt-5">
-                            <div class="card h-100">
-                                <img src="<?= $profil["picture"] ?>" class="test" alt="...">
-                                <div class="card-body">
-                                    <h1 class="card-title text-center h4"><?= $profil["lastName"] . " " . $profil["firstName"] ?></h1>
-                                    <div class="card-text h5">
-                                        <p class="my-3"><span class="font-weight-bold">Age</span> : <?= $profil["age"] ?></p>
-                                        <p class="my-3"><span class="font-weight-bold">Code Postal</span> : <?= $profil["postalCode"] ?></p>
-                                        <p class="my-3"><span class="font-weight-bold">Description</span> :</p>
-                                        <p class=""><?= $profil["description"] ?></p>
-                                    </div>
-                                </div>
-                                <div class="card-footer text-center">
-                                    <small class="text-muted"><i class="far fa-heart fa-2x heartIcon"></i></small>
-                                </div>
-                            </div>
-                        </div> -->
 
     <?php
     }

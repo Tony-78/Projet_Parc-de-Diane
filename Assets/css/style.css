@@ -321,6 +321,39 @@ html, body {
 
 
 
+.img-card-news-size {
+    height: 15rem;
+    width: auto;
+}
+
+
+
+/* 
+.img-card-size {
+    height: 25rem;
+    width: auto;
+} */
+
+
+
+.img-card-size {
+    margin: 1rem;
+    justify-content: center;
+    border-radius: 5px;
+    width: 25rem;
+    height: 20rem;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -328,6 +361,15 @@ html, body {
 
 .wallpaper {
     background-image: url("../img/accueil.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 40rem;
+}
+
+.wallpaper-services {
+    background-image: url("../img/wallpaper-services.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -383,7 +425,6 @@ html, body {
 .boxPicture {
     margin: 1rem;
     justify-content: center;
-    border: solid 1px #7B7788;
     border-radius: 5px;
     width: 18rem;
     height: 12rem;

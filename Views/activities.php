@@ -39,7 +39,7 @@ require "../Controllers/activities-controller.php";
             </div>
 
             <div class="row justify-content-center my-5">
-                <h4>La résidence du Parc de Diane offre de mutiples activités sportives</h4>
+                <h4>La résidence du Parc de Diane offre de mutiples activités sportives.</h4>
             </div>
             <div class="row activities-height">
                 <div class="col-md-6 text-description order-2 order-md-1">
