@@ -221,14 +221,100 @@ class Announces extends Database {
      * @return array|boolean
      */
     public function getAllAnnouncesInformations() {
-        $query = "SELECT * FROM `Announces` INNER JOIN `Users`
-        ON `Announces`.`user_id` = `Users`.`user_id`
-        INNER JOIN `Announce_categories`
-        ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
-        ORDER BY `Announces`.`announce_create_date`;";
+        $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
+            `Announces`.`announce_create_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`
+            FROM `Announces` INNER JOIN `Users`
+            ON `Announces`.`user_id` = `Users`.`user_id`
+            INNER JOIN `Announce_categories`
+            ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
+            ORDER BY `Announces`.`announce_create_date` DESC;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->execute();
         $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false; 
+        }
+    }
+
+
+    /**
+     * Méthode qui permet de récupérer les annonces d'une personne
+     * 
+     * @return array|boolean
+     */
+    public function getAllAnnouncesInformationsForOnePerson(int $idUser) {
+        $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
+        `Announces`.`announce_create_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
+        FROM `Announces` INNER JOIN `Users`
+        ON `Announces`.`user_id` = `Users`.`user_id`
+        INNER JOIN `Announce_categories`
+        ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
+        WHERE `Users`.`user_id` = :id
+        ORDER BY `Announces`.`announce_create_date` DESC;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("id", $idUser, PDO::PARAM_INT);
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if(!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * Méthode qui permet de supprimer une annonce
+     * 
+     * @param int
+     * @return boolean
+     */
+    public function deleteAnnounce(int $idUser) {
+        $query = "DELETE FROM `Announces` WHERE `announce_id` = :id;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("id", $idUser, PDO::PARAM_INT);
+        return $buildQuery->execute();
+    }
+
+
+    /**
+     * Méthode qui permet de modifier un patient existant
+     * 
+     * @param array
+     * @return boolean
+     */
+    public function updateAnnounce(array $arrayParameters) {
+        $query = "UPDATE `Announces` SET `announce_title` = :title, `announce_description` = :description, `announce_picture` = :picture, 
+                        `announce_create_date` = :modifiedDate, `announce_category_id` = :categoryId WHERE `announce_id` = :id;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("title", $arrayParameters["announceTitle"], PDO::PARAM_STR);
+        $buildQuery->bindValue("description", $arrayParameters["announceDescription"], PDO::PARAM_STR);
+        $buildQuery->bindValue("picture", $arrayParameters["announceImgName"], PDO::PARAM_STR);
+        $buildQuery->bindValue("modifiedDate", $arrayParameters["announceModifiedDate"], PDO::PARAM_STR);
+        $buildQuery->bindValue("categoryId", $arrayParameters["announceCategory"], PDO::PARAM_STR);
+        $buildQuery->bindValue("id", $arrayParameters["announceId"], PDO::PARAM_INT);
+        return $buildQuery->execute();
+    }
+
+
+   /**
+     * Méthode qui permet de récupérer les informations d'une annonce via le numéro d'annonce
+     * 
+     * @return array|boolean
+     */
+    public function getAnnounceInformationsByAnnounceId($idAnnounce) {
+        $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`
+                    , `Announce_categories`.`announce_category_name`
+            FROM `Announces` 
+            INNER JOIN `Announce_categories`
+            ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
+            WHERE `Announces`.`announce_id` = :id;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("id", $idAnnounce, PDO::PARAM_INT);
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetch(PDO::FETCH_ASSOC);
         if(!empty($resultQuery)) {
             return $resultQuery;
         } else {

@@ -46,7 +46,7 @@ require "Controllers/index-controller.php";
             <a class="nav-link" href="Views/services.php">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Views/announces.php">Annonces</a>
+            <a class="nav-link" href="Views/list_announces.php">Annonces</a>
           </li>
         </ul>
 

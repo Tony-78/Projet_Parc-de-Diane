@@ -21,7 +21,7 @@
             <a class="nav-link" href="services.php">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="announces.php">Annonces</a>
+            <a class="nav-link" href="list_announces.php">Annonces</a>
           </li>
         </ul>
 

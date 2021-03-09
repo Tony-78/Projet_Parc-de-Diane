@@ -26,7 +26,7 @@ if (isset($_POST["deleteAccount"]) && !empty($_POST["deleteAccount"])) {
 
     if (preg_match($regexId, $_POST["deleteAccount"])) {
         $verifiedId = htmlspecialchars($_POST["deleteAccount"]);
-        // $Users->deleteUser($verifiedId);
+        $Users->deleteUser($verifiedId);
         header("Location: list_users.php?page=1");
         $_SESSION["deleteUser"] = "success";
         exit();

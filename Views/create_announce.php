@@ -62,6 +62,8 @@ require "../Controllers/create_announce-controller.php";
                         </div>
                         <div>
                             <input class="textUpload" type="file" id="imgToUpload" name="imgToUpload">
+                            <p class="mt-1 format_size_img_upload"><i>Formats autorisés : ........<br>
+                            Taille max de l'image : 8 Mo<i></p>
                         </div>
                         <span style="color:red;"><?= isset($arrayErrors["imgToUpload"]) ? $arrayErrors["imgToUpload"]  : "" ?></span>
                     </div>

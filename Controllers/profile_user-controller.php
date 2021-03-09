@@ -4,7 +4,6 @@ require "../Models/Database.php";
 require "../Models/Users.php";
 require "../Models/Usernames.php";
 
-
 if (isset($_POST["SignOutButton"])) {
     session_destroy();
     header("Location: ../index.php");

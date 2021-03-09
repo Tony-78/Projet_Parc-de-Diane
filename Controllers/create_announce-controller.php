@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../Models/Database.php";
-require "../Models/Announces.php";
+require "../Models/announces.php";
 
 $Actualdate = strftime("%Y/%m/%d", time());
 
@@ -39,9 +39,10 @@ if (isset($_POST["addAnnounce"])) {
 
     $extensions = array(".png", ".jpeg", ".jpg", ".PNG", ".JPEG", ".JPG");
     $extensionsType = array("image/png", "image/jpeg", "image/gif");
-    $maxSize = 1024 * 1024;
+    $maxSize = (1024 * 1024) * 8;
     $repertory = "../Assets/img/img-announces/";
     $scanImg = scandir("../Assets/img/img-announces");
+
 
 
     // On vérifie qu'un fichier a bien été envoyé via le formulaire 'fileToUpload' et qu'il n'y a pas eu d'erreur pendant l'envoi
@@ -53,6 +54,7 @@ if (isset($_POST["addAnnounce"])) {
         // On vérifie que l'extension de notre fichier match avec celles autorisées dans le tableau 'extensions'
         // Après &&, on vérifie le type match avec le tableau 'extensionsType'
         if (in_array($extensionFile, $extensions) && in_array($fileType, $extensionsType)) {
+            
             // On récupère le poids du fichier
             $fileSize = $_FILES["imgToUpload"]["size"];
             // On compare le poids du fichier avec le max autorisé dans la variable 'maxSize'
@@ -67,16 +69,16 @@ if (isset($_POST["addAnnounce"])) {
                     $scanImg = scandir("../Assets/img/img-announces");
                 }
             } else {
-                $arrayErrors["imgToUpload"] = "<i>Votre fichier doit faire moins de 1 Mo, veuillez réessayer.</i>";
+                $arrayErrors["imgToUpload"] = "<i>Votre fichier doit faire moins de 8 Mo, veuillez réessayer.</i>";
             }
         } else {
             $arrayErrors["imgToUpload"] = "<i>Le fichier n'est pas une image, veuillez réessayer.</i>";
         }
     }
 
+    var_dump($arrayErrors);
 
     if (empty($arrayErrors)) {
-        echo "c'est bon";
 
         $Announces = new Announces();
 
@@ -93,7 +95,7 @@ if (isset($_POST["addAnnounce"])) {
 
         if ($Announces->addAnnounce($arrayParameters)) {
             $_SESSION["announceMessage"] = "success";
-            header("Location: ../Views/announces.php");
+            header("Location: ../Views/list_announces.php");
         } else {
             $_SESSION["announceMessage"] = "error";
         }
