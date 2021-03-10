@@ -41,7 +41,7 @@ require "../Controllers/modify_announce-controller.php";
                     <div class="form-user mt-3">
                         <label for="announceCategory">Catégorie de l'annonce :</label>
                         <select name="announceCategory" id="announceCategory">
-                            <option value="Veuillez choisir" <?=  isset($announceInfos["announce_category_name"]) && ($announceInfos["announce_category_name"] == "Veuillez choisir") ? "selected" : "" ?>>Veuillez choisir</option>
+                            <option value="Veuillez choisir" <?= isset($announceInfos["announce_category_name"]) && ($announceInfos["announce_category_name"] == "Veuillez choisir") ? "selected" : "" ?>>Veuillez choisir</option>
                             <option value="1" <?= isset($announceInfos["announce_category_name"]) && ($announceInfos["announce_category_name"] == "Cours particuliers") ? "selected" : "" ?>>Cours particuliers</option>
                             <option value="2" <?= isset($announceInfos["announce_category_name"]) && ($announceInfos["announce_category_name"] == "Garde d'enfants") ? "selected" : "" ?>>Garde d'enfants</option>
                             <option value="3" <?= isset($announceInfos["announce_category_name"]) && ($announceInfos["announce_category_name"] == "Mobilier") ? "selected" : "" ?>>Mobilier</option>
@@ -57,19 +57,23 @@ require "../Controllers/modify_announce-controller.php";
                     </div>
 
                     <div class="form-user mt-3">
+
                         <div>
                             <label for="imgToUpload">Choisir une image (optionnel) :</label>
                         </div>
                         <div>
                             <input class="textUpload" type="file" id="imgToUpload" name="imgToUpload">
-                            <p class="mt-1 format_size_img_upload"><i>Formats autorisés : ........<br>
-                            Taille max de l'image : 8 Mo<i></p>
+                            <p class="mt-1 format_size_img_upload"><i>Formats autorisés : .png / .jpeg / .jpg<br>
+                                    Taille max de l'image : 8 Mo<i></p>
                         </div>
-                        <span style="color:red;"><?= isset($arrayErrors["imgToUpload"]) ? $arrayErrors["imgToUpload"]  : "" ?></span>
-                    </div>
 
-                    <div class="mt-4 d-flex justify-content-between">
-                        <input type="submit" name="modifyAnnounceButton" class="btn btn-info btn-md addUser" value="Publier">
+                        <span style="color:red;" class="mb-5"><?= isset($arrayErrors["imgToUpload"]) ? $arrayErrors["imgToUpload"]  : "" ?></span>
+                        <img src="../Assets/img/img-announces/<?= isset($announceInfos["announce_picture"]) ? $announceInfos["announce_picture"] : "default.png" ?>" class="boxPicture"><input type="text" name="actualImg"  value="<?= $announceInfos["announce_picture"] ?> ">
+                    </div>
+                    
+
+                    <div class="mt-4 d-flex justify-content-end">
+                        <button type="submit" name="modifyAnnounceButton" class="btn btn-info btn-md addUser" value="<?= $verifiedIdAnnounce ?>">Valider les modifications</button>
                     </div>
                 </form>
             </div>

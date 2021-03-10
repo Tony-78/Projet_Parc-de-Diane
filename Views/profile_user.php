@@ -156,7 +156,6 @@ require "../Controllers/profile_user-controller.php";
                                 <p class="mb-4">Pour consulter, modifier ou supprimer une annonce, cliquer sur le bouton ci-dessous :</p>
                                 <a class="btn btn-success ml-3" href="personal_announces.php" >Mes annonces</a>
                             </div>
-                            
                         </div>
 
                         <div class="tab-pane fade" id="account-delete">

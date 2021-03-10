@@ -3,7 +3,7 @@ session_start();
 require "../Models/Database.php";
 require "../Models/announces.php";
 
-$Actualdate = strftime("%Y/%m/%d", time());
+$Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
 
 
 if (isset($_POST["addAnnounce"])) {
@@ -95,7 +95,7 @@ if (isset($_POST["addAnnounce"])) {
 
         if ($Announces->addAnnounce($arrayParameters)) {
             $_SESSION["announceMessage"] = "success";
-            header("Location: ../Views/list_announces.php");
+            header("Location: ../Views/list_announces.php?page=1");
         } else {
             $_SESSION["announceMessage"] = "error";
         }

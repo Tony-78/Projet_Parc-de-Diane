@@ -48,6 +48,7 @@ require "../Controllers/profile_admin-controller.php";
                         <div class="list-group list-group-flush account-settings-links">
                             <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">Coordonnées</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Changement de mot de passe</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-announces">Mes annonces</a>
                             <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-list-users">Liste des utilisateurs</a>
                         </div>
                     </div>
@@ -145,6 +146,13 @@ require "../Controllers/profile_admin-controller.php";
                                                         <input type="submit" name="modifyPasswordButton" class="btn btn-info btn-md" value="Sauvegarder">
                                                     </div>
                                                 </form>
+                                            </div>
+                                        </div>
+
+                                        <div class="tab-pane fade" id="account-announces">
+                                            <div class="card-body pb-2">
+                                                <p class="mb-4">Pour consulter, modifier ou supprimer une annonce, cliquer sur le bouton ci-dessous :</p>
+                                                <a class="btn btn-success ml-3" href="personal_announces.php">Mes annonces</a>
                                             </div>
                                         </div>
 

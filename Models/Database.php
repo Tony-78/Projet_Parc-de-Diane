@@ -2,8 +2,10 @@
 
 class Database {
 
+    
     private $db;
 
+    
     /**
      * Get the value of db
      */ 
@@ -24,6 +26,7 @@ class Database {
         return $this;
     }
 
+    
     public function __construct() {
         $this->setDb(new PDO("mysql:dbname=parc de diane;host=localhost;charset=utf8;", "root", "", [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]));
     }

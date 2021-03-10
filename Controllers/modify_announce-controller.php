@@ -6,20 +6,25 @@ require "../Models/Announces.php";
 
 $Announces = new Announces();
 
-if (isset($_POST["modifyAnnounce"])) {
+if (isset($_POST["modifyAnnounceAccess"])) {
 
     $regexIdAnnounce = "/^[0-9]+$/";
 
-    if (preg_match($regexIdAnnounce, $_POST["modifyAnnounce"])) {
-        $verifiedIdAnnounce = htmlspecialchars($_POST["modifyAnnounce"]);
+    if (preg_match($regexIdAnnounce, $_POST["modifyAnnounceAccess"])) {
+        $verifiedIdAnnounce = htmlspecialchars($_POST["modifyAnnounceAccess"]);
         
         $announceInfos = $Announces->getAnnounceInformationsByAnnounceId($verifiedIdAnnounce);
         var_dump($announceInfos);
     }
-    var_dump($verifiedIdAnnounce);
+   
+} else {
+    header("Location: personal_announces.php");
+    $_SESSION["updateAnnounceMessage"] = "error";
+    var_dump($announceInfos);
+        
 }
 
-$Actualdate = strftime("%Y/%m/%d", time());
+$Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
 
 
 
@@ -55,8 +60,15 @@ if (isset($_POST["modifyAnnounceButton"])) {
         }
     }
 
+    $regexIdAnnounce = "/^[0-9]+$/";
 
-    $extensions = array(".png", ".jpeg", ".jpg", ".PNG", ".JPEG", ".JPG");
+    if (preg_match($regexIdAnnounce, $_POST["modifyAnnounceButton"])) {
+        $verifiedIdAnnounce = htmlspecialchars($_POST["modifyAnnounceButton"]);
+    }
+
+
+
+    $extensions = array(".png", ".jpeg", ".jpg");
     $extensionsType = array("image/png", "image/jpeg", "image/gif");
     $maxSize = (1024 * 1024) * 8;
     $repertory = "../Assets/img/img-announces/";
@@ -98,22 +110,23 @@ if (isset($_POST["modifyAnnounceButton"])) {
     
     if (empty($arrayErrors)) {
 
-
         $arrayParameters = [
             "announceTitle" => $verifiedAnnounceTitle,
-            "announceImgName" => $fileName,
+            "announceImgName" => isset($fileName) ? $fileName : $_POST["actualImg"],
             "announceDescription" => $verifiedAnnounceDescription,
             "announceModifiedDate" => $Actualdate,
             "announceCategory" => $verifiedAnnounceCategory,
             "announceId" => $verifiedIdAnnounce
         ];
-        var_dump($verifiedIdAnnounce);
 
-        // if ($Announces->updateAnnounce($arrayParameters)) {
-        //     echo "c'est ok";
-        //    $_SESSION["updateAnnounceMessage"] = "success";
-        // } else {
-        //     $_SESSION["updateAnnounceMessage"] = "error";
-        // }
+        if ($Announces->updateAnnounce($arrayParameters)) {
+            header("Location: personal_announces.php");
+           $_SESSION["updateAnnounceMessage"] = "success";
+        } else {
+            $_SESSION["updateAnnounceMessage"] = "error";
+        }
+        
+    } else {
+        $announceInfos = $Announces->getAnnounceInformationsByAnnounceId($verifiedIdAnnounce);
     }
 }

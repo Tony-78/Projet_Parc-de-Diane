@@ -58,9 +58,3 @@ if (isset($_POST["searchUser"])) {
         }
     }    
 }
-
-
-
-// if(!$allPatientsInformations) {
-//     $errorMessage = "Il y a eu un problème lors de la récupération des données des patients";
-// }

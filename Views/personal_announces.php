@@ -50,26 +50,58 @@ require "../Controllers/personal_announces-controller.php";
                     </button>
                 </div>
             </div>
-    <?php
+        <?php
             unset($_SESSION["deleteAnnounce"]);
         }
     }
+
+    if (isset($_SESSION["updateAnnounceMessage"])) {
+        if ($_SESSION["updateAnnounceMessage"] == "success") {
+        ?>
+            <div class="container">
+                <div class="alert alert-success alert-dismissible fade show text-center mt-3" role="alert">
+                    <p>Votre annonce a bien été modifiée.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php
+            unset($_SESSION["updateAnnounceMessage"]);
+        } else {
+        ?>
+            <div class="container">
+                <div class="alert alert-danger alert-dismissible fade show text-center mt-3" role="alert">
+                    <p>Il y a eu une erreur lors de la modification de votre annonce.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+    <?php
+            unset($_SESSION["updateAnnounceMessage"]);
+        }
+    }
+
     ?>
 
     <div class="container">
-        <a href="create_announce.php" class="btn btn-primary">Ajouter une annonce</a>
-    </div>
-
-    <div class="container">
         <div class="row ng-scope">
-            <div class="card-group">
-                <?php
-                if (!empty($allPersonalAnnounces)) {
-                    foreach ($allPersonalAnnounces as $announceValue) {
-                ?>
+
+            <?php
+            if (!empty($allPersonalAnnounces)) {
+                $currentAnnounce = 1;
+                $countAnnounce = count($allPersonalAnnounces);
+                foreach ($allPersonalAnnounces as $announceValue) {
+                    if ($currentAnnounce == 1) {
+            ?>
+                        <div class="card-group w-100">
+                        <?php
+                    }
+                        ?>
                         <div class="col-lg-6 mt-3">
                             <div class="border shadow h-100">
-                                <div class="row ">
+                                <div class="row">
                                     <div class="col-sm-5">
                                         <img class="boxPicture" src="../Assets/img/img-announces/<?= !is_null($announceValue["announce_picture"]) ? $announceValue["announce_picture"] : "default.png" ?>">
                                     </div>
@@ -80,8 +112,8 @@ require "../Controllers/personal_announces-controller.php";
                                         <p class="fs-mini text-muted px-3 mb-1">Contact : <?= $announceValue["user_tel"] ?></p>
 
                                         <form action="modify_announce.php" method="post">
-                                            <button type="submit" class="btn btn-success btn-sm ml-3 mb-2" title="Modifier" name="modifyAnnounce" value="<?= $announceValue["announce_id"] ?>"><i class="far fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm mb-2" title="Supprimer" data-toggle="modal" data-target="#deleteAnnounceModal<?= $announceValue["announce_id"] ?>"><i class="far fa-trash-alt"></i></button>
+                                            <button type="submit" class="btn btn-success btn-sm ml-3 mb-1" title="Modifier" name="modifyAnnounceAccess" value="<?= $announceValue["announce_id"] ?>"><i class="far fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm mb-1" title="Supprimer" data-toggle="modal" data-target="#deleteAnnounceModal<?= $announceValue["announce_id"] ?>"><i class="far fa-trash-alt"></i></button>
                                         </form>
 
                                         <div class="modal fade" id="deleteAnnounceModal<?= $announceValue["announce_id"] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -114,11 +146,16 @@ require "../Controllers/personal_announces-controller.php";
                                 </div>
                             </div>
                         </div>
-                    <?php
+                        <?php
+                        if ($currentAnnounce == 2) {
+                        ?>
+                        </div>
+                <?php
+                        }
+                        $currentAnnounce = $currentAnnounce == 1 ? 2 : 1;
                     }
                 } else {
-                    ?>
-            </div>
+                ?>
         </div>
         <div>
             <div>
