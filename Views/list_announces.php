@@ -80,6 +80,22 @@ require "../Controllers/list_announces-controller.php";
             unset($_SESSION["deleteAnnounce"]);
         }
     }
+    if (isset($_SESSION["searchAnnounce"])){
+        if ($_SESSION["searchAnnounce"] == "error") {
+        ?>
+
+            <div class="container">
+                <div class="alert alert-danger alert-dismissible fade show text-center mt-3" role="alert">
+                    <p>Il y a eu une erreur lors de la recherche.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+        <?php
+            unset($_SESSION["searchAnnounce"]);
+    }
+    }
     ?>
     </div>
     <?php
@@ -94,8 +110,9 @@ require "../Controllers/list_announces-controller.php";
     } else {
     ?>
         <div class="container-fluid">
+            <div class="text-center mb-4">
             <a href="create_announce.php" class="btn btn-primary">Ajouter une annonce</a>
-        
+            </div>
             <div class="row mb-3 justify-content-center">
                 <div class="col-sm-10">
                     <div class="text-center">
@@ -106,8 +123,22 @@ require "../Controllers/list_announces-controller.php";
                                 <button type="button" class="btn btn-secondary btn-sm mb-1">Réinitialiser</button>
                             </a>
                         </form>
+                        
                     </div>
                 </div>
+            </div>
+            <div class="text-center">
+            <form action="list_announces.php?page=1" method="post">
+                        <select name="searchAnnounceCategorySelect">
+                            <option>Choix d'une catégorie</option>
+                            <option value="Cours particuliers">Cours particuliers</option>
+                            <option value="Garde d'enfants">Garde d'enfants</option>
+                            <option value="Mobilier">Mobilier</option>
+                            <option value="Multimédia">Multimédia</option>
+                            <option value="Autres">Autres</option>
+                        </select>
+                <button type="submit" class="btn btn-success btn-sm mx-3 mb-1">Rechercher</button>
+            </form>
             </div>
         </div>
 
@@ -128,12 +159,12 @@ require "../Controllers/list_announces-controller.php";
                                 <div class="border shadow h-100">
                                     <div class="row ">
                                         <div class="col-sm-5">
-                                            <img class="boxPicture" src="../Assets/img/img-announces/<?= !is_null($announceValue["announce_picture"]) ? $announceValue["announce_picture"] : "default.png" ?>">
+                                            <img class="boxPicture" src="../Assets/img/img-announces/<?= $announceValue["announce_picture"] !='NULL' ? $announceValue["announce_picture"] : "default.png" ?>">
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            <p class="value3 px-3 mb-0"><?= strftime("%d/%m/%Y", strtotime($announceValue["announce_create_date"])) ?></p>
+                                            <p class="value3 px-3 mb-0"><?= strftime("%d/%m/%Y", strtotime($announceValue["announce_update_date"])) ?></p>
                                             <p class="fs-mini text-muted px-3 mb-1">Contact : <?= $announceValue["user_tel"] ?></p>
 
                                             <?php 

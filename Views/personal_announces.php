@@ -103,12 +103,12 @@ require "../Controllers/personal_announces-controller.php";
                             <div class="border shadow h-100">
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <img class="boxPicture" src="../Assets/img/img-announces/<?= !is_null($announceValue["announce_picture"]) ? $announceValue["announce_picture"] : "default.png" ?>">
+                                        <img class="boxPicture" src="../Assets/img/img-announces/<?= $announceValue["announce_picture"] !='NULL' ? $announceValue["announce_picture"] : "default.png" ?>">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <p class="value3 px-3 mb-0"><?= strftime("%d/%m/%Y", strtotime($announceValue["announce_create_date"])) ?></p>
+                                        <p class="value3 px-3 mb-0"><?= strftime("%d/%m/%Y", strtotime($announceValue["announce_update_date"])) ?></p>
                                         <p class="fs-mini text-muted px-3 mb-1">Contact : <?= $announceValue["user_tel"] ?></p>
 
                                         <form action="modify_announce.php" method="post">

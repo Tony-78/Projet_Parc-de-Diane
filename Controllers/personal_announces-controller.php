@@ -3,6 +3,10 @@ session_start();
 require "../Models/Database.php";
 require "../Models/Announces.php";
 
+if (!isset($_SESSION["user"])) {
+    header("Location: ../index.php");
+}
+
 $Announces = new Announces();
 
 // SUPPRESSION D'UNE ANNONCE

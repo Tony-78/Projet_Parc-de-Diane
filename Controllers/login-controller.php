@@ -3,6 +3,10 @@ session_start();
 require "../Models/Database.php";
 require "../Models/Users_status.php";
 
+if (isset($_SESSION["user"])) {
+    header("Location: ../index.php");
+}
+
 
 if (isset($_POST["connectUser"])) {
 
@@ -65,7 +69,3 @@ if (isset($_POST["connectUser"])) {
 }
 
 
-// ???
-// if (isset($_SESSION["user"])) {
-//     header("Location: ../index.php");
-// }

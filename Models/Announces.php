@@ -7,7 +7,6 @@ class Announces extends Database
     private $announce_title;
     private $announce_picture;
     private $announce_description;
-    private $announce_create_date;
     private $announce_update_date;
     private $user_id;
     private $announce_category_id;
@@ -101,28 +100,6 @@ class Announces extends Database
 
 
     /**
-     * Get the value of announce_create_date
-     */
-    public function getAnnounce_create_date()
-    {
-        return $this->announce_create_date;
-    }
-
-    /**
-     * Set the value of announce_create_date
-     *
-     * @return  self
-     */
-    public function setAnnounce_create_date($announce_create_date)
-    {
-        $this->announce_create_date = $announce_create_date;
-
-        return $this;
-    }
-
-
-
-    /**
      * Get the value of announce_update_date
      */
     public function getAnnounce_update_date()
@@ -141,6 +118,9 @@ class Announces extends Database
 
         return $this;
     }
+
+
+
 
 
 
@@ -205,13 +185,13 @@ class Announces extends Database
     public function addAnnounce(array $arrayParameters)
     {
         $query = "INSERT INTO `Announces` (`announce_title`, `announce_picture`, `announce_description`, 
-                                            `announce_create_date`, `user_id`, `announce_category_id`) 
+                                            `announce_update_date`, `user_id`, `announce_category_id`) 
                     VALUES (:title, :picture, :description, :createDate, :userId, :categoryId);";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("title", $arrayParameters["announceTitle"], PDO::PARAM_STR);
         $buildQuery->bindValue("picture", $arrayParameters["announceImgName"], PDO::PARAM_STR);
         $buildQuery->bindValue("description", $arrayParameters["announceDescription"], PDO::PARAM_STR);
-        $buildQuery->bindValue("createDate", $arrayParameters["announceCreateDate"], PDO::PARAM_STR);
+        $buildQuery->bindValue("createDate", $arrayParameters["announceUpdateDate"], PDO::PARAM_STR);
         $buildQuery->bindValue("userId", $arrayParameters["userId"], PDO::PARAM_STR);
         $buildQuery->bindValue("categoryId", $arrayParameters["announceCategory"], PDO::PARAM_STR);
         return $buildQuery->execute();
@@ -226,12 +206,12 @@ class Announces extends Database
     public function getAllAnnouncesInformations()
     {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
-            `Announces`.`announce_create_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`
+            `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`
             FROM `Announces` INNER JOIN `Users`
             ON `Announces`.`user_id` = `Users`.`user_id`
             INNER JOIN `Announce_categories`
             ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
-            ORDER BY `Announces`.`announce_create_date` DESC;";
+            ORDER BY `Announces`.`announce_update_date` DESC;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->execute();
         $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
@@ -251,13 +231,13 @@ class Announces extends Database
     public function getAllAnnouncesInformationsForOnePerson(int $idUser)
     {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
-        `Announces`.`announce_create_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
+        `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`
         ON `Announces`.`user_id` = `Users`.`user_id`
         INNER JOIN `Announce_categories`
         ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
         WHERE `Users`.`user_id` = :id
-        ORDER BY `Announces`.`announce_create_date` DESC;";
+        ORDER BY `Announces`.`announce_update_date` DESC;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("id", $idUser, PDO::PARAM_INT);
         $buildQuery->execute();
@@ -359,14 +339,14 @@ class Announces extends Database
     public function searchAnnounce(string $search)
     {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
-        `Announces`.`announce_create_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
+        `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`
         ON `Announces`.`user_id` = `Users`.`user_id`
         INNER JOIN `Announce_categories`
         ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
         WHERE `Announces`.`announce_title` LIKE :search1
         OR `Announce_categories`.`announce_category_name` LIKE :search2 
-        ORDER BY `Announces`.`announce_create_date` DESC;";
+        ORDER BY `Announces`.`announce_update_date` DESC;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("search1", $search, PDO::PARAM_STR);
         $buildQuery->bindValue("search2", $search, PDO::PARAM_STR);
@@ -390,12 +370,12 @@ class Announces extends Database
     public function getAnnouncesPaginate(int $startValue)
     {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
-        `Announces`.`announce_create_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
+        `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`
         ON `Announces`.`user_id` = `Users`.`user_id`
         INNER JOIN `Announce_categories`
         ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
-        ORDER BY `Announces`.`announce_create_date` DESC
+        ORDER BY `Announces`.`announce_update_date` DESC
         LIMIT :startValue, 20;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("startValue", $startValue, PDO::PARAM_INT);
@@ -407,4 +387,33 @@ class Announces extends Database
             return false;
         }
     }
+
+
+    /**
+     * Méthode qui permet de rechercher une annonce via une categorie (select)
+     * 
+     * @param string
+     * @return array|boolean
+     */
+    public function searchAnnounceCategoryWithSelect(string $search)
+    {
+        $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
+        `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
+        FROM `Announces` INNER JOIN `Users`
+        ON `Announces`.`user_id` = `Users`.`user_id`
+        INNER JOIN `Announce_categories`
+        ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
+        WHERE `Announce_categories`.`announce_category_name` LIKE :search1
+        ORDER BY `Announces`.`announce_update_date` DESC;";
+        $buildQuery = parent::getDb()->prepare($query);
+        $buildQuery->bindValue("search1", $search, PDO::PARAM_STR);
+        $buildQuery->execute();
+        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($resultQuery)) {
+            return $resultQuery;
+        } else {
+            return false;
+        }
+    }
 }
+

@@ -3,6 +3,10 @@ session_start();
 require "../Models/Database.php";
 require "../Models/announces.php";
 
+if (!isset($_SESSION["user"])) {
+    header("Location: ../index.php");
+}
+
 $Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
 
 
@@ -76,18 +80,16 @@ if (isset($_POST["addAnnounce"])) {
         }
     }
 
-    var_dump($arrayErrors);
 
     if (empty($arrayErrors)) {
 
         $Announces = new Announces();
 
-
         $arrayParameters = [
             "announceTitle" => $verifiedAnnounceTitle,
-            "announceImgName" => $fileName,
+            "announceImgName" => $fileName !=NULL ? $fileName : 'NULL',
             "announceDescription" => $verifiedAnnounceDescription,
-            "announceCreateDate" => $Actualdate,
+            "announceUpdateDate" => $Actualdate,
             "userId" => $_SESSION["user"]["id"],
             "announceCategory" => $verifiedAnnounceCategory
         ];
@@ -99,7 +101,5 @@ if (isset($_POST["addAnnounce"])) {
         } else {
             $_SESSION["announceMessage"] = "error";
         }
-
-        var_dump($arrayParameters);
     }
 }

@@ -65,8 +65,7 @@ CREATE TABLE Announces(
         announce_title       Varchar (100) NOT NULL ,
         announce_picture     Varchar (255) NOT NULL ,
         announce_description Varchar (2000) NOT NULL ,
-        announce_create_date TimeStamp NOT NULL ,
-        announce_update_date TimeStamp ,
+        announce_update_date Datetime ,
         user_id              Int NOT NULL ,
         announce_category_id Int NOT NULL
 	,CONSTRAINT Announces_PK PRIMARY KEY (announce_id)

@@ -9,9 +9,10 @@ if (isset($_POST["SignOutButton"])) {
     header("Location: ../index.php");
 }
 
-if (!isset($_SESSION["user"])) {
+if (!($_SESSION["user"]["role"] == "admin")) {
     header("Location: ../index.php");
 }
+
 
 $Users = new Users();
 $Usernames = new Usernames();

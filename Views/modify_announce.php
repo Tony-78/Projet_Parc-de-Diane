@@ -68,7 +68,7 @@ require "../Controllers/modify_announce-controller.php";
                         </div>
 
                         <span style="color:red;" class="mb-5"><?= isset($arrayErrors["imgToUpload"]) ? $arrayErrors["imgToUpload"]  : "" ?></span>
-                        <img src="../Assets/img/img-announces/<?= isset($announceInfos["announce_picture"]) ? $announceInfos["announce_picture"] : "default.png" ?>" class="boxPicture"><input type="text" name="actualImg"  value="<?= $announceInfos["announce_picture"] ?> ">
+                        <img src="../Assets/img/img-announces/<?= $announceInfos["announce_picture"] !='NULL' ? $announceInfos["announce_picture"] : "default.png" ?>" class="boxPicture"><input type="text" name="actualImg" hidden  value="<?= isset($announceInfos["announce_picture"]) && $announceInfos["announce_picture"] !=NULL ? $announceInfos["announce_picture"] : 'NULL' ?>">
                     </div>
                     
 

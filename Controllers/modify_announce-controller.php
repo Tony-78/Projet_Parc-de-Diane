@@ -1,27 +1,27 @@
 <?php
 session_start();
 require "../Models/Database.php";
-require "../Models/Users.php";
 require "../Models/Announces.php";
 
 $Announces = new Announces();
 
 if (isset($_POST["modifyAnnounceAccess"])) {
+    $_SESSION["ModifyIdAnnounceAccess"] = $_POST["modifyAnnounceAccess"];
+}
+
+if (isset($_POST["modifyAnnounceAccess"]) || isset($_SESSION["ModifyIdAnnounceAccess"])) {
 
     $regexIdAnnounce = "/^[0-9]+$/";
+    $id = isset($_POST["modifyAnnounceAccess"]) ? $_POST["modifyAnnounceAccess"] : $_SESSION["ModifyIdAnnounceAccess"];
 
-    if (preg_match($regexIdAnnounce, $_POST["modifyAnnounceAccess"])) {
-        $verifiedIdAnnounce = htmlspecialchars($_POST["modifyAnnounceAccess"]);
-        
+    if (preg_match($regexIdAnnounce, $id)) {
+        $verifiedIdAnnounce = htmlspecialchars($id);
+
         $announceInfos = $Announces->getAnnounceInformationsByAnnounceId($verifiedIdAnnounce);
-        var_dump($announceInfos);
     }
-   
 } else {
     header("Location: personal_announces.php");
     $_SESSION["updateAnnounceMessage"] = "error";
-    var_dump($announceInfos);
-        
 }
 
 $Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
@@ -85,7 +85,7 @@ if (isset($_POST["modifyAnnounceButton"])) {
         // On vérifie que l'extension de notre fichier match avec celles autorisées dans le tableau 'extensions'
         // Après &&, on vérifie le type match avec le tableau 'extensionsType'
         if (in_array($extensionFile, $extensions) && in_array($fileType, $extensionsType)) {
-            
+
             // On récupère le poids du fichier
             $fileSize = $_FILES["imgToUpload"]["size"];
             // On compare le poids du fichier avec le max autorisé dans la variable 'maxSize'
@@ -107,7 +107,7 @@ if (isset($_POST["modifyAnnounceButton"])) {
         }
     }
 
-    
+
     if (empty($arrayErrors)) {
 
         $arrayParameters = [
@@ -120,12 +120,12 @@ if (isset($_POST["modifyAnnounceButton"])) {
         ];
 
         if ($Announces->updateAnnounce($arrayParameters)) {
+            unset($_SESSION["ModifyIdAnnounceAccess"]);
             header("Location: personal_announces.php");
-           $_SESSION["updateAnnounceMessage"] = "success";
+            $_SESSION["updateAnnounceMessage"] = "success";
         } else {
             $_SESSION["updateAnnounceMessage"] = "error";
         }
-        
     } else {
         $announceInfos = $Announces->getAnnounceInformationsByAnnounceId($verifiedIdAnnounce);
     }
