@@ -99,9 +99,7 @@ require "Controllers/index-controller.php";
 
 
 
-  <div class="container-fluid wallpaper">
-
-  </div>
+  <div class="container-fluid wallpaper"></div>
 
 
   <h5 class="text-center my-5">La résidence du Parc de Diane est située dans un écrin de verdure au sein de la vallée de la Bièvre.<br>
@@ -213,7 +211,7 @@ require "Controllers/index-controller.php";
   </div>
 
 
-<!--
+  <!--
   <div class="container mt-5">
     <h1 class="text-center mb-3">Que trouve t-on au Parc de Diane ?</h1>
     <div class="white-divider mb-5"></div>
@@ -253,7 +251,10 @@ require "Controllers/index-controller.php";
     </div>
   </div> -->
 
+
   <div class="container">
+    <h1 class="text-center mb-3">Que trouve t-on au Parc de Diane ?</h1>
+    <div class="white-divider mb-5"></div>
     <div class="row text-center">
       <div class="col-6">
         <img class="img-card-size " src="Assets/img/pharmacie.jpg" alt="Card image cap">

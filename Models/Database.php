@@ -28,7 +28,8 @@ class Database {
 
     
     public function __construct() {
-        $this->setDb(new PDO("mysql:dbname=parc de diane;host=localhost;charset=utf8;", "root", "", [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]));
+        $this->setDb(new PDO("mysql:dbname=parc de diane;host=localhost;charset=utf8;", 
+            "root", "", [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]));
     }
 }
 

@@ -9,7 +9,7 @@ if (!isset($_SESSION["user"])) {
 
 $Announces = new Announces();
 
-// SUPPRESSION D'UNE ANNONCE
+// DELETE ANNOUNCE
 
 if (isset($_POST["deleteAnnounce"])){
 
@@ -27,7 +27,7 @@ if (isset($_POST["deleteAnnounce"])){
 }
 
 
-// AFFICHAGE DES ANNONCES
+// ANNOUNCES DISPLAY
 
 if ($_SESSION["user"]) {
 

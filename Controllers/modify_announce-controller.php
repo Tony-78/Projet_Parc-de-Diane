@@ -5,6 +5,8 @@ require "../Models/Announces.php";
 
 $Announces = new Announces();
 
+$Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
+
 if (isset($_POST["modifyAnnounceAccess"])) {
     $_SESSION["ModifyIdAnnounceAccess"] = $_POST["modifyAnnounceAccess"];
 }
@@ -24,11 +26,8 @@ if (isset($_POST["modifyAnnounceAccess"]) || isset($_SESSION["ModifyIdAnnounceAc
     $_SESSION["updateAnnounceMessage"] = "error";
 }
 
-$Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
 
-
-
-// MODIFICATION DES INFOS DE L'ANNONCE
+// MODIFY ANNOUNCE
 
 if (isset($_POST["modifyAnnounceButton"])) {
 
@@ -68,8 +67,8 @@ if (isset($_POST["modifyAnnounceButton"])) {
 
 
 
-    $extensions = array(".png", ".jpeg", ".jpg");
-    $extensionsType = array("image/png", "image/jpeg", "image/gif");
+    $extensions = array(".png", ".jpeg", ".jpg", ".PNG", ".JPEG", ".JPG");
+    $extensionsType = array("image/png", "image/jpeg");
     $maxSize = (1024 * 1024) * 8;
     $repertory = "../Assets/img/img-announces/";
     $scanImg = scandir("../Assets/img/img-announces");

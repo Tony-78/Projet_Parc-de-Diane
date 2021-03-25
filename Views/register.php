@@ -39,30 +39,35 @@ require "../Controllers/register-controller.php";
                         <div class="line-login mx-auto"></div>
                         <div class="form-user mt-5">
                             <label for="lastname">Nom :</label>
-                            <input type="text" name="lastname" id="lastname" class="form-control background-login-input" placeholder="Votre nom" value="<?= isset($verifiedLastname) ? $verifiedLastname : "" ?>">
+                            <input type="text" name="lastname" id="lastname" class="form-control background-login-input" 
+                                placeholder="Votre nom" value="<?= isset($verifiedLastname) ? $verifiedLastname : "" ?>">
                             <span style="color:red;"><?= isset($arrayErrors["lastname"]) ? $arrayErrors["lastname"] : "" ?></span>
                         </div>
                         <div class="form-user mt-3">
                             <label for="firstname">Prénom :</label>
-                            <input type="text" name="firstname" id="firstname" class="form-control background-login-input" placeholder="Votre prénom" value="<?= isset($verifiedFirstname) ? $verifiedFirstname : "" ?>">
+                            <input type="text" name="firstname" id="firstname" class="form-control background-login-input" 
+                                placeholder="Votre prénom" value="<?= isset($verifiedFirstname) ? $verifiedFirstname : "" ?>">
                             <span style="color:red;"><?= isset($arrayErrors["firstname"]) ? $arrayErrors["firstname"] : "" ?></span>
                         </div>
                         <div class="form-user mt-3">
                             <label for="email">Adresse email :</label>
-                            <input type="email" name="email" id="email" class="form-control background-login-input" placeholder="Votre adresse email" value="<?= isset($verifiedEmail) ? $verifiedEmail : "" ?>">
+                            <input type="email" name="email" id="email" class="form-control background-login-input" 
+                                placeholder="Votre adresse email" value="<?= isset($verifiedEmail) ? $verifiedEmail : "" ?>">
                             <span id="emailError"></span>
                             <span style="color:red;"><?= isset($arrayErrors["email"]) ? $arrayErrors["email"] : "" ?></span>
                         </div>
                         <div class="form-user mt-3">
                             <label for="phone">Numéro de téléphone :</label>
-                            <input type="text" name="phone" id="phone" class="form-control background-login-input" placeholder="Votre numéro de téléphone" value="<?= isset($verifiedPhone) ? $verifiedPhone : "" ?>"
+                            <input type="text" name="phone" id="phone" class="form-control background-login-input" 
+                                placeholder="Votre numéro de téléphone" value="<?= isset($verifiedPhone) ? $verifiedPhone : "" ?>"
                                 data-toggle="popover" data-trigger="focus" title="Numéro de téléphone"
                                 data-content="Veuillez renseigner votre numéro de téléphone sous la forme 06XXXXXXXX (sans espace).">
                             <span style="color:red;"><?= isset($arrayErrors["phone"]) ? $arrayErrors["phone"] : "" ?></span>
                         </div>
                         <div class="form-user mt-3">
                             <label for="username">Identifiant :</label>
-                            <input type="text" name="username" id="username" class="form-control background-login-input" placeholder="Votre identifiant reçu" value="<?= isset($verifiedUsername) ? $verifiedUsername : "" ?>"
+                            <input type="text" name="username" id="username" class="form-control background-login-input" 
+                                placeholder="Votre identifiant reçu" value="<?= isset($verifiedUsername) ? $verifiedUsername : "" ?>"
                                 data-toggle="popover" data-trigger="focus" title="Identifiant (6 caractères)"
                                 data-content="Veuillez contacter le gardien pour récupérer votre identifiant.">
                             <span style="color:red;"><?= isset($arrayErrors["username"]) ? $arrayErrors["username"] : "" ?></span>

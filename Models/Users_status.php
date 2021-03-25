@@ -48,7 +48,12 @@ class Users_status extends Database {
     }
 
 
-
+    /**
+     * Construct method
+     * 
+     * @return exit
+     * @see database
+     */
     public function __construct() {
         parent::__construct();
     }
@@ -56,13 +61,14 @@ class Users_status extends Database {
 
 
     /**
-     * Méthode qui permet de vérifier si un username (nom) est déjà présent en BDD
+     * Method used to verify if a username is present in the DB (this method will show all informations from the account)
      * 
      * @param string
      * @return array|boolean
      */
     public function verifyUserPresence(string $username) {
-        $query = "SELECT `user_id`, `user_firstname`, `user_lastname`, `user_tel`, `user_mail`, `username_username`, `user_password`, `user_status_role`
+        $query = "SELECT `user_id`, `user_firstname`, `user_lastname`, `user_tel`,
+                    `user_mail`, `username_username`, `user_password`,`user_status_role`
         FROM `Users` 
         INNER JOIN `Users_status` 
         ON `Users_status`.`user_status_id` = `Users`.`user_status_id`

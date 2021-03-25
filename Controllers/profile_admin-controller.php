@@ -4,12 +4,6 @@ require "../Models/Database.php";
 require "../Models/Users.php";
 require "../Models/Usernames.php";
 
-
-if (isset($_POST["SignOutButton"])) {
-    session_destroy();
-    header("Location: ../index.php");
-}
-
 if (!isset($_SESSION["user"])) {
     header("Location: ../index.php");
 }
@@ -18,20 +12,22 @@ $Users = new Users();
 $Usernames = new Usernames();
 
 $verifiedUsername = $_SESSION["user"]["username"];
-// on récupère le username_id de l'utilisateur
+// WE COLLECT THE USERNAME_ID OF THE ADMIN
 $idUsername = $Usernames->searchUsernameId($verifiedUsername);
 
 
 
-// MODIFICATION DES INFOS DU COMPTE ADMIN
+// MODIFY INFORMATIONS OF THE ADMIN ACCOUNT
 
 if (isset($_POST["modifyInfosButton"])) {
 
+    // REGEX
     $regexName = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð '-]+$/";
     $regexPhone = "/^([0]{1})([1-9]{1})([0-9]{2}){4}$/";
 
     $arrayErrors = [];
 
+    // LASTNAME CHECK
     if (isset($_POST["lastname"])) {
         if (preg_match($regexName, $_POST["lastname"])) {
             $verifiedLastname = htmlspecialchars($_POST["lastname"]);
@@ -44,6 +40,7 @@ if (isset($_POST["modifyInfosButton"])) {
         }
     }
 
+    // FIRSTNAME CHECK
     if (isset($_POST["firstname"])) {
         if (preg_match($regexName, $_POST["firstname"])) {
             $verifiedFirstname = htmlspecialchars($_POST["firstname"]);
@@ -56,6 +53,7 @@ if (isset($_POST["modifyInfosButton"])) {
         }
     }
 
+    // EMAIL CHECK
     if (isset($_POST["email"])) {
         if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $verifiedEmail = htmlspecialchars($_POST["email"]);
@@ -68,6 +66,7 @@ if (isset($_POST["modifyInfosButton"])) {
         }
     }
 
+    // PHONE CHECK
     if (isset($_POST["phone"])) {
         if (preg_match($regexPhone, $_POST["phone"])) {
             $verifiedPhone = htmlspecialchars($_POST["phone"]);
@@ -93,6 +92,7 @@ if (isset($_POST["modifyInfosButton"])) {
 
         if ($Users->updateUser($arrayParameters)) {
 
+            // HYDRATATION
             $_SESSION["user"]["lastname"] = $Users->getUser_lastname();
             $_SESSION["user"]["firstname"] = $Users->getUser_firstname();
             $_SESSION["user"]["mail"] = $Users->getUser_mail();
@@ -107,7 +107,7 @@ if (isset($_POST["modifyInfosButton"])) {
 
 
 
-// CHANGEMENT DE MOT DE PASSE USER
+// PASSWORD CHANGEMENT OF THE ADMIN ACCOUNT
 
 if (isset($_POST["modifyPasswordButton"])) {
 
@@ -122,7 +122,6 @@ if (isset($_POST["modifyPasswordButton"])) {
                 "id_username" => $idUsername["username_id"]
             ];
 
-            // on lance la méthode
             $Users->updatePassword($arrayParameters);
 
             unset($_SESSION["user"]);

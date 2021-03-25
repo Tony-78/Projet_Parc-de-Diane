@@ -7,12 +7,13 @@ if (isset($_SESSION["user"])) {
     header("Location: ../index.php");
 }
 
-
 if (isset($_POST["connectUser"])) {
 
+    // REGEX
     $regexUsername = "/^[1-9]{6}$/";
     $regexPassword = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?.!@$%^&*-]).{8,20}$/";
 
+    // USERNAME CHECK
     if (isset($_POST["username"])) {
         if (preg_match($regexUsername, $_POST["username"])) {
             $verifiedUsername = htmlspecialchars($_POST["username"]);
@@ -26,6 +27,7 @@ if (isset($_POST["connectUser"])) {
     }
 
 
+    // PASSWORD CHECK
     if (isset($_POST["password"])) {
         if (preg_match($regexPassword, $_POST["password"])) {
             $verifiedPassword = $_POST["password"];
@@ -45,9 +47,8 @@ if (isset($_POST["connectUser"])) {
     }
 
 
-    // si l'utilisateur a renseigné un bon identifiant
+    // IF THE USER HAS ENTERED A USERNAME AND PASSWORD CORRESPONDING TO HIS ACCOUNT
     if (!empty($resultQuery) && isset($verifiedPassword)) {
-        // password_verify = vérifie qu'un mot de passe correspond à un hachage
         if (password_verify($verifiedPassword, $resultQuery["user_password"])) {
             $user = [];
             $user["id"] = $resultQuery["user_id"];

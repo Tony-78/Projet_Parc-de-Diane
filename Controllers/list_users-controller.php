@@ -4,11 +4,6 @@ require "../Models/Database.php";
 require "../Models/Users.php";
 require "../Models/Usernames.php";
 
-if (isset($_POST["SignOutButton"])) {
-    session_destroy();
-    header("Location: ../index.php");
-}
-
 if (!($_SESSION["user"]["role"] == "admin")) {
     header("Location: ../index.php");
 }
@@ -18,8 +13,7 @@ $Users = new Users();
 $Usernames = new Usernames();
 
 
-
-// SUPPRESSION DU COMPTE USER
+// DELETE ACCOUNT
 
 if (isset($_POST["deleteAccount"]) && !empty($_POST["deleteAccount"])) {
   
@@ -37,9 +31,7 @@ if (isset($_POST["deleteAccount"]) && !empty($_POST["deleteAccount"])) {
 }
 
 
-// PAGINATION / RECHERCHE UTILISATEUR / AFFICHAGE DES UTILISATEURS
-
-$countUsers = $Users->countUsers();
+// PAGINATION / RESEARCH USER / USERS DISPLAY
 
 if (isset($_POST["searchUser"])) {
     $search = htmlspecialchars($_POST["searchUser"]);
@@ -53,6 +45,7 @@ if (isset($_POST["searchUser"])) {
         $actualPage = htmlspecialchars($_GET["page"]);
     
         if(preg_match($regexPage, $actualPage)) {
+            $countUsers = $Users->countUsers();
             $totalPages = ceil($countUsers["countUsers"] / 10);
             $startValue = ($actualPage - 1) * 10;
             $allUsersInformations = $Users->getUsersPaginate($startValue);

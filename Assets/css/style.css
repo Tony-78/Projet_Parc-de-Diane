@@ -4,6 +4,9 @@ html, body {
     font-family: 'Manrope', sans-serif;
 }
 
+
+/* NAVBAR */
+
 .navbar {
     background-color: white;
 }
@@ -31,8 +34,12 @@ html, body {
 }
 
 
+
+
+
 /* MEDIA QUERIES */
-/* format mobile et tablette */
+
+/* CELLPHONES AND DIGITAL TABLETS */
 @media (max-width: 768px) { 
     .logo {
         margin-left: 0;
@@ -52,7 +59,8 @@ html, body {
     }
 }
 
-/* format tablette */
+
+/* DIGITAL TABLETS */
 @media (min-width: 450px) and (max-width: 768px) {
     .tennis-img {
         background: url("../img/tennis-ipad.jpg") !important;
@@ -125,13 +133,49 @@ html, body {
         background-position: center !important;
     }
 
-
     .margin-content {
         margin-top: 2.5rem!important;
     }
+
+    .wallpaper {
+        background-image: url("../img/accueil.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 20rem !important;
+    }
+
+    .wallpaper-shops {
+        background-image: url("../img/wallpaper-shops.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 20rem !important;
+    }
+
+    .wallpaper-services {
+        background-image: url("../img/wallpaper-services.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 20rem !important;
+    }
+
+    .wallpaper-activities {
+        background-image: url("../img/wallpaper-activities.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 20rem !important;
+    }
 }
 
-/* format mobile */
+
+/* CELLPHONES */
 @media (max-width: 450px) { 
     .img-col-height {
         height: 15rem;
@@ -145,24 +189,54 @@ html, body {
         margin-top: 2rem!important;
         margin-bottom: 2rem!important;
     }
+
+    .wallpaper {
+        background-image: url("../img/accueil.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 13rem !important;
+    }
+
+    .wallpaper-shops {
+        background-image: url("../img/wallpaper-shops.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 10rem !important;
+    }
+
+    .wallpaper-services {
+        background-image: url("../img/wallpaper-services.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 12rem !important;
+    }
+
+    .wallpaper-activities {
+        background-image: url("../img/wallpaper-activities.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 10rem !important;
+    }
 }
 
 
 
 
 
-
-
-
-
-
-/* PAGE COMMERCES & ACTIVITES  */
+/* SHOPS, ACTIVITIES & SERVICES SECTIONS */
 
 .shops-height, .activities-height, .services-height {
     background: #FFF;
     height: 31rem;
 }
-
 
 .line {
     height: 1px;
@@ -174,7 +248,12 @@ html, body {
 }
 
 
-
+.white-divider {
+    width: 100px;
+    height: 2px;
+    background: black;
+    margin: 1rem auto;
+}
 
 .tennis-img {
     background: url("../img/tennis.jpg");
@@ -260,11 +339,47 @@ html, body {
     background-position: center;
 }
 
+.wallpaper {
+    background-image: url("../img/accueil.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 41rem;
+}
+
+.wallpaper-shops {
+    background-image: url("../img/wallpaper-shops.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 41rem;
+}
+
+.wallpaper-services {
+    background-image: url("../img/wallpaper-services.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 41rem;
+}
+
+.wallpaper-activities {
+    background-image: url("../img/wallpaper-activities.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 41rem;
+}
 
 
 
 
-/* PAGE LOGIN */
+
+/* LOGIN SECTION */
 
 .line-login {
     height: 1px;
@@ -310,31 +425,12 @@ html, body {
 
 
 
-
-
-
-
-
-
-
-
-
-
+/* INDEX SECTION */
 
 .img-card-news-size {
     height: 15rem;
     width: auto;
 }
-
-
-
-/* 
-.img-card-size {
-    height: 25rem;
-    width: auto;
-} */
-
-
 
 .img-card-size {
     margin: 1rem;
@@ -343,54 +439,6 @@ html, body {
     width: 25rem;
     height: 20rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.wallpaper {
-    background-image: url("../img/accueil.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 40rem;
-}
-
-.wallpaper-services {
-    background-image: url("../img/wallpaper-services.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 40rem;
-}
-
-
-
-
-.white-divider {
-    width: 100px;
-    height: 2px;
-    background: black;
-    margin: 1rem auto;
-}
-
-
-
-
-
 
 .oaoa {
     overflow:hidden;
@@ -422,6 +470,8 @@ html, body {
 
 
 
+/* ANNOUNCES SECTION */
+
 .boxPicture {
     margin: 1rem;
     justify-content: center;
@@ -429,8 +479,6 @@ html, body {
     width: 18rem;
     height: 12rem;
 }
-
-
 
 .format_size_img_upload {
     font-size: 0.9rem;

@@ -26,8 +26,6 @@ class Usernames extends Database {
         return $this;
     }
 
-
-    
     /**
      * Get the value of username_username
      */ 
@@ -49,14 +47,19 @@ class Usernames extends Database {
     }
 
 
-
+    /**
+     * Construct method
+     * 
+     * @return exit
+     * @see database
+     */
     public function __construct() {
         parent::__construct();
     }
 
 
     /**
-     * Méthode qui permet de vérifier si un username (nom) est déjà présent en BDD
+     * Method used to check if a username is available for a registration (list of usernames available)
      * 
      * @param string
      * @return boolean
@@ -69,7 +72,6 @@ class Usernames extends Database {
         $buildQuery->bindValue("username", $username);
         $buildQuery->execute();
         $resultQuery = $buildQuery->fetch(PDO::FETCH_ASSOC);
-        // si $resultQuery retourne true -> le username est déjà présent en BDD
         if(!empty($resultQuery)) {
             return true;
         } else {
@@ -80,7 +82,7 @@ class Usernames extends Database {
 
 
     /**
-     * Méthode qui permet de récupérer l'id d'un username
+     * Method used to get the ID of one username
      * 
      * @return array|boolean
      */
@@ -99,7 +101,7 @@ class Usernames extends Database {
 
 
     /**
-     * Méthode qui permet de savoir si un unsername_id est présent en BDD (dans la table Users)
+     * Method used to check if a username is already chosen by someone for a registration
      * 
      * @return boolean
      */
@@ -115,8 +117,4 @@ class Usernames extends Database {
             return false;
         }
     }
-    
-
-
-    
 }

@@ -195,15 +195,19 @@ class Users extends Database {
     }
 
 
-    // constructeur pour connecter mon objet à la base de donnée
-    // des qu'on lance la création de l'objet , on connecte ce fichier à la bdd
+    /**
+     * Construct method
+     * 
+     * @return exit
+     * @see database
+     */
     public function __construct() {
         parent::__construct();
     }
 
 
     /**
-     * Méthode qui permet d'ajouter un compte en base de données
+     * Method used to add a user in DB
      * 
      * @param array
      * @return boolean
@@ -223,7 +227,7 @@ class Users extends Database {
 
 
     /**
-     * Méthode qui permet de modifier les données d'un compte
+     * Method used to modify personal informations
      * 
      * @param array
      * @return boolean
@@ -251,7 +255,7 @@ class Users extends Database {
 
 
     /**
-     * Méthode qui permet de modifier mot de passe
+     * Method used to update a password 
      * 
      * @param array
      * @return boolean
@@ -265,7 +269,7 @@ class Users extends Database {
     }
 
     /**
-     * Méthode qui permet de supprimer un compte
+     * Method used to delete an account from the DB
      * 
      * @param int
      * @return boolean
@@ -276,33 +280,10 @@ class Users extends Database {
         $buildQuery->bindValue("id", $idUsername, PDO::PARAM_STR);
         return $buildQuery->execute();
     }
-    
-
-    /**
-     * Méthode qui permet de récupérer les informations d'un compte user
-     * 
-     * @return array|boolean
-     */
-    public function getAllUsersInformations() {
-        $query = "SELECT `Usernames`.`username_username`, `Users`.`user_lastname`, `Users`.`user_firstname`,
-                    `Users`.`user_mail`, `Users`.`user_tel`, `Users`.`username_id`
-                    FROM `Users`
-                    INNER JOIN `Usernames`
-                    ON `Usernames`.`username_id` = `Users`.`username_id`
-                    WHERE `Users`.`user_status_id` = 2;";
-        $buildQuery = parent::getDb()->prepare($query);
-        $buildQuery->execute();
-        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
-        if(!empty($resultQuery)) {
-            return $resultQuery;
-        } else {
-            return false; 
-        }
-    }
 
 
     /**
-     * Méthode qui permet de rechercher un utilisateur par son nom, prénom ou identifiant
+     * Method used to search a user by  its lastname, firstname or username
      * 
      * @param string
      * @return array|boolean
@@ -330,7 +311,7 @@ class Users extends Database {
 
 
     /**
-     * Méthode qui permet de compter le nombre d'utilisateurs en base de données
+     * Method used to count the number of users in DB
      * 
      * @return array|boolean
      */
@@ -348,7 +329,7 @@ class Users extends Database {
     
 
     /**
-     * Méthode qui permet de récupérer 10 utilisateurs en fonction d'une valeur de début
+     * Method used to collect 10 users based on a start value (pagination)
      * 
      * @param int
      * @return array|boolean

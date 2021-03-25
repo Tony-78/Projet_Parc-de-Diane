@@ -4,19 +4,25 @@ require "../Models/Database.php";
 require "../Models/Users.php";
 require "../Models/Usernames.php";
 
+if (isset($_SESSION["user"])) {
+    header("Location: ../index.php");
+}
+
 if (isset($_POST["addUser"])) {
    
+    // REGEX 
     $regexName = "/^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð '-]+$/";
     $regexPhone = "/^([0]{1})([1-9]{1})([0-9]{2}){4}$/";
     $regexUsername = "/^[1-9]{6}$/";
     $regexPassword = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?.!@$%^&*-]).{8,20}$/";
-    // $regexPassword = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,15})$/";
     
     $arrayErrors = [];
 
+
+    // OBJECT CREATION
     $Usernames = new Usernames();
 
-
+    // LASTNAME CHECK
     if (isset($_POST["lastname"])) {
         if (preg_match($regexName, $_POST["lastname"])) {
             $verifiedLastname = htmlspecialchars($_POST["lastname"]);
@@ -29,6 +35,7 @@ if (isset($_POST["addUser"])) {
         }
     }
 
+    // FIRSTNAME CHECK
     if (isset($_POST["firstname"])) {
         if (preg_match($regexName, $_POST["firstname"])) {
             $verifiedFirstname = htmlspecialchars($_POST["firstname"]);
@@ -41,6 +48,7 @@ if (isset($_POST["addUser"])) {
         }
     }
 
+    // EMAIL CHECK
     if (isset($_POST["email"])) {
         if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $verifiedEmail = htmlspecialchars($_POST["email"]);
@@ -53,6 +61,7 @@ if (isset($_POST["addUser"])) {
         }
     }
    
+    // PHONE CHECK
     if (isset($_POST["phone"])) {
         if (preg_match($regexPhone, $_POST["phone"])) {
             $verifiedPhone = htmlspecialchars($_POST["phone"]);
@@ -65,13 +74,12 @@ if (isset($_POST["addUser"])) {
         }
     }
 
+    // USERNAME CHECK
     if (isset($_POST["username"])) {
         if (preg_match($regexUsername, $_POST["username"])) {
-            // Méthode permettant de savoir si un username est présent en BDD, si true alors le username est présent
             if ($Usernames->verifyUserPresenceForRegister($_POST["username"])) {
                 $id = $Usernames->searchUsernameId($_POST["username"]);
-                // var_dump($id);
-                // var_dump($Usernames->test((int)$id["username_id"]));
+
                 if ($Usernames->verifyUsernameIdPresenceForRegister($id["username_id"])) {
                     $arrayErrors["username"] = "<i>Identifiant déjà utilisé</i>";
                 } else {
@@ -89,6 +97,7 @@ if (isset($_POST["addUser"])) {
         }
     }
 
+    // PASSWORD CHECK
     if ($_POST["password"] === $_POST["confirmPassword"]) {
         if(preg_match($regexPassword, $_POST["password"])) {
             $verifiedPassword = password_hash($_POST["password"], PASSWORD_BCRYPT);
@@ -116,7 +125,6 @@ if (isset($_POST["addUser"])) {
             "idUsername" => $idUsername["username_id"]
         ];
         
-        // On exécute la méthode addPatient pour envoyer les valeurs en BDD
         if ($Users->addUser($arrayParameters)) {
             $_SESSION["registerMessage"] = "success";
             header("Location: ../Views/login.php");
@@ -126,7 +134,5 @@ if (isset($_POST["addUser"])) {
     }
 }
 
-if (isset($_SESSION["user"])) {
-    header("Location: ../index.php");
-}
+
 

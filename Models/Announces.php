@@ -120,10 +120,6 @@ class Announces extends Database
     }
 
 
-
-
-
-
     /**
      * Get the value of user_id
      */
@@ -168,8 +164,12 @@ class Announces extends Database
 
 
 
-    // constructeur pour connecter mon objet à la base de donnée
-    // des qu'on lance la création de l'objet , on connecte ce fichier à la bdd
+    /**
+     * Construct method
+     * 
+     * @return exit
+     * @see database
+     */
     public function __construct()
     {
         parent::__construct();
@@ -177,13 +177,12 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet d'ajouter une annonce en BDD
+     * Method used to add an announce in DB
      * 
      * @param array
      * @return boolean
      */
-    public function addAnnounce(array $arrayParameters)
-    {
+    public function addAnnounce(array $arrayParameters) {
         $query = "INSERT INTO `Announces` (`announce_title`, `announce_picture`, `announce_description`, 
                                             `announce_update_date`, `user_id`, `announce_category_id`) 
                     VALUES (:title, :picture, :description, :createDate, :userId, :categoryId);";
@@ -199,37 +198,11 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de récupérer les informations des annonces
+     * Method used to collect announces of one user
      * 
      * @return array|boolean
      */
-    public function getAllAnnouncesInformations()
-    {
-        $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
-            `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`
-            FROM `Announces` INNER JOIN `Users`
-            ON `Announces`.`user_id` = `Users`.`user_id`
-            INNER JOIN `Announce_categories`
-            ON `Announce_categories`.`announce_category_id` = `Announces`.`announce_category_id`
-            ORDER BY `Announces`.`announce_update_date` DESC;";
-        $buildQuery = parent::getDb()->prepare($query);
-        $buildQuery->execute();
-        $resultQuery = $buildQuery->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($resultQuery)) {
-            return $resultQuery;
-        } else {
-            return false;
-        }
-    }
-
-
-    /**
-     * Méthode qui permet de récupérer les annonces d'une personne
-     * 
-     * @return array|boolean
-     */
-    public function getAllAnnouncesInformationsForOnePerson(int $idUser)
-    {
+    public function getAllAnnouncesInformationsForOnePerson(int $idUser) {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
         `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`
@@ -251,13 +224,12 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de supprimer une annonce
+     * Method used to delete an announce
      * 
      * @param int
      * @return boolean
      */
-    public function deleteAnnounce(int $idUser)
-    {
+    public function deleteAnnounce(int $idUser) {
         $query = "DELETE FROM `Announces` WHERE `announce_id` = :id;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("id", $idUser, PDO::PARAM_INT);
@@ -266,13 +238,12 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de modifier un patient existant
+     * Method used to update an announce
      * 
      * @param array
      * @return boolean
      */
-    public function updateAnnounce(array $arrayParameters)
-    {
+    public function updateAnnounce(array $arrayParameters) {
         $query = "UPDATE `Announces` SET `announce_title` = :title, `announce_description` = :description, `announce_picture` = :picture, 
                         `announce_update_date` = :modifiedDate, `announce_category_id` = :categoryId WHERE `announce_id` = :id;";
         $buildQuery = parent::getDb()->prepare($query);
@@ -287,12 +258,11 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de récupérer les informations d'une annonce via le numéro d'annonce
+     * Method used to collect all informations of one announce
      * 
      * @return array|boolean
      */
-    public function getAnnounceInformationsByAnnounceId($idAnnounce)
-    {
+    public function getAnnounceInformationsByAnnounceId($idAnnounce) {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`
                     , `Announce_categories`.`announce_category_name`
             FROM `Announces` 
@@ -312,12 +282,11 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de compter le nombre d'annonces en base de données
+     * Method used to count the number of announces in DB
      * 
      * @return array|boolean
      */
-    public function countAnnounces()
-    {
+    public function countAnnounces() {
         $query = "SELECT COUNT(*) AS `countAnnounces` FROM `Announces`;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->execute();
@@ -331,13 +300,12 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de rechercher une annonce par son titre ou sa catégorie
+     * Method used to search an announce by its title or category
      * 
      * @param string
      * @return array|boolean
      */
-    public function searchAnnounce(string $search)
-    {
+    public function searchAnnounce(string $search) {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
         `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`
@@ -362,13 +330,12 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de récupérer 20 annonces en fonction d'une valeur de début
+     * Method used to collect 20 announces based on a start value (pagination)
      * 
      * @param int
      * @return array|boolean
      */
-    public function getAnnouncesPaginate(int $startValue)
-    {
+    public function getAnnouncesPaginate(int $startValue) {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
         `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`
@@ -390,13 +357,12 @@ class Announces extends Database
 
 
     /**
-     * Méthode qui permet de rechercher une annonce via une categorie (select)
+     * Method used to search an announce by its category
      * 
      * @param string
      * @return array|boolean
      */
-    public function searchAnnounceCategoryWithSelect(string $search)
-    {
+    public function searchAnnounceCategoryWithSelect(string $search) {
         $query = "SELECT `Announces`.`announce_title`, `Announces`.`announce_picture`, `Announces`.`announce_description`,
         `Announces`.`announce_update_date`, `Users`.`user_tel`, `Announce_categories`.`announce_category_name`, `Announces`.`announce_id`
         FROM `Announces` INNER JOIN `Users`

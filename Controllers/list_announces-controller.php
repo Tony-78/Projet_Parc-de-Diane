@@ -7,8 +7,7 @@ require "../Models/Announces.php";
 $Announces = new Announces();
 
 
-$countAnnounces = $Announces->countAnnounces();
-
+// PAGINATION / RESEARCH ANNOUNCE / ANNOUNCES DISPLAY
 
 if (isset($_POST["searchAnnounce"])) {
     $search = htmlspecialchars($_POST["searchAnnounce"]);
@@ -30,6 +29,7 @@ if (isset($_POST["searchAnnounce"])) {
         $actualPage = htmlspecialchars($_GET["page"]);
 
         if (preg_match($regexPage, $actualPage)) {
+            $countAnnounces = $Announces->countAnnounces();
             $totalPages = ceil($countAnnounces["countAnnounces"] / 20);
             $startValue = ($actualPage - 1) * 20;
             $allAnnouncesInformations = $Announces->getAnnouncesPaginate($startValue);
@@ -39,8 +39,7 @@ if (isset($_POST["searchAnnounce"])) {
 
 
 
-
-// SUPPRESSION D'UNE ANNONCE
+// DELETE ANNOUNCE
 
 if (isset($_POST["deleteAnnounce"])) {
 

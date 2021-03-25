@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../Models/Database.php";
-require "../Models/announces.php";
+require "../Models/Announces.php";
 
 if (!isset($_SESSION["user"])) {
     header("Location: ../index.php");
@@ -9,6 +9,7 @@ if (!isset($_SESSION["user"])) {
 
 $Actualdate = strftime("%Y/%m/%d %H:%M:%S", time());
 
+// ADD ANNOUNCE
 
 if (isset($_POST["addAnnounce"])) {
 
@@ -42,30 +43,23 @@ if (isset($_POST["addAnnounce"])) {
 
 
     $extensions = array(".png", ".jpeg", ".jpg", ".PNG", ".JPEG", ".JPG");
-    $extensionsType = array("image/png", "image/jpeg", "image/gif");
+    $extensionsType = array("image/png", "image/jpeg");
     $maxSize = (1024 * 1024) * 8;
     $repertory = "../Assets/img/img-announces/";
-    $scanImg = scandir("../Assets/img/img-announces");
 
-
-
-    // On vérifie qu'un fichier a bien été envoyé via le formulaire 'fileToUpload' et qu'il n'y a pas eu d'erreur pendant l'envoi
     if (isset($_FILES["imgToUpload"]) && $_FILES["imgToUpload"]["error"] == 0) {
-        // On récupère l'extension du fichier
+        // WE COLLECT THE FILE EXTENSION
         $extensionFile = strrchr($_FILES["imgToUpload"]["name"], ".");
-        // On récupère le type du fichier temporaire pour le comparer plus bas avec le tableau 'extensionsType'
+        // WE COLLECT THE TYPE OF THE TEMPORARY FILE TO COMPARE IT BELOW WITH THE ARRAY ($extensionsType)
         $fileType = mime_content_type($_FILES["imgToUpload"]["tmp_name"]);
-        // On vérifie que l'extension de notre fichier match avec celles autorisées dans le tableau 'extensions'
-        // Après &&, on vérifie le type match avec le tableau 'extensionsType'
         if (in_array($extensionFile, $extensions) && in_array($fileType, $extensionsType)) {
-            
-            // On récupère le poids du fichier
+            // WE COLLECT THE SIZE OF THE FILE
             $fileSize = $_FILES["imgToUpload"]["size"];
-            // On compare le poids du fichier avec le max autorisé dans la variable 'maxSize'
+            // WE CHECK THE SIZE OF THE FILE WITH THE SIZE MAX ($maxSize)
             if ($fileSize <= $maxSize) {
-                // On récupère l'extension pour l'upload
-                // On renomme notre fichier avec un ID unique (un nom random) et on lui redonne son extension
+                // WE RENAME THE FILE WITH AN UNIQUE ID AND WE ADD ITS EXTENSION
                 $fileName = uniqid() . $extensionFile;
+                //
                 // On upload le fichier avec la fonction 'move_uploaded_file' qui comprend 2 paramètres : 
                 // - Le nom du fichier temporaire
                 // - La destination du fichier et le nom qui a été renommé précedemment

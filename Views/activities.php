@@ -31,13 +31,8 @@ require "../Controllers/activities-controller.php";
 
 
     <section id="activity">
+    <div class="container-fluid wallpaper-activities"></div>
         <div class="container-fluid">
-            <div class="container">
-                <div class="row my-5 justify-content-center ">
-                    <img src="../Assets/img/testimg.jpg" alt="" class="w-100">
-                </div>
-            </div>
-
             <div class="row justify-content-center my-5">
                 <h4>La résidence du Parc de Diane offre de mutiples activités sportives.</h4>
             </div>
