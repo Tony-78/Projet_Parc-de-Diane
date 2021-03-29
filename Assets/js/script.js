@@ -3,7 +3,7 @@
 const togglePassword = document.getElementById("togglePassword");
 const input = document.querySelector(".login-eye input");
 
-//question : pourquoi je dois vérifier si ma const est non null ?
+
 if(togglePassword) {
     togglePassword.addEventListener("click", changeVisibility);
 };

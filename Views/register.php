@@ -19,17 +19,15 @@ require "../Controllers/register-controller.php";
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../Assets/css/style.css">
-    <title>Parc de Diane</title>
+    <title>Inscription - Parc de Diane</title>
 </head>
 
 <body>
 
-    <!-- Header -->
-
     <?php include "includes/navbar.php"; ?>
 
 
-    <div id="login">
+    <div class="content">
         <h3 class="text-center mt-5">Espace résidents</h3>
         <div class="container mt-5">
             <div class="row justify-content-center align-items-center">
@@ -92,7 +90,9 @@ require "../Controllers/register-controller.php";
     </div>
 
 
+    <?php include "includes/footer.php"; ?>
 
+    
 
 
 

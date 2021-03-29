@@ -1,4 +1,4 @@
-<header class="header">
+<header class="header border">
     <nav class="navbar navbar-expand-lg d-flex">
       <a class="navbar-brand logo d-flex w-50 mr-auto" href="../index.php"><img src="../assets/img/pdd2.png"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

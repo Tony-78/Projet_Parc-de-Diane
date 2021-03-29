@@ -16,7 +16,7 @@ require "../Controllers/personal_announces-controller.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../Assets/css/style.css">
-    <title>Parc de Diane</title>
+    <title>Mes annonces - Parc de Diane</title>
 </head>
 
 <body>
@@ -99,7 +99,7 @@ require "../Controllers/personal_announces-controller.php";
                         <?php
                     }
                         ?>
-                        <div class="col-lg-6 mt-3">
+                        <div class="col-lg-6 mt-3 mb-5">
                             <div class="border shadow h-100">
                                 <div class="row">
                                     <div class="col-sm-5">

@@ -16,22 +16,19 @@ require "../Controllers/services-controller.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../Assets/css/style.css">
-    <title>Parc de Diane</title>
+    <title>Services - Parc de Diane</title>
 </head>
 
 <body>
 
-    <!-- Header -->
-
     <?php include "includes/navbar.php"; ?>
 
+    <div class="container-fluid wallpaper-services"></div>
 
-    <section id="activity">
-        <div class="container-fluid wallpaper-services"></div>
+    <h4 class="text-center sections-margin">Les résidents ont la chance de disposer de quelques commerces au sein du Parc de Diane</h4>
+
+    <div class="content">
         <div class="container-fluid">
-            <div class="row justify-content-center my-5">
-                <h4>Les résidents ont la chance de disposer de quelques commerces au sein du Parc de Diane</h4>
-            </div>
             <div class="row services-height">
                 <div class="col-md-6 text-description order-2 order-md-1">
                     <div class="mt-5 mx-5 margin-content">
@@ -210,9 +207,9 @@ require "../Controllers/services-controller.php";
             </div>
 
         </div>
-    </section>
+    </div>
 
-
+    <?php include "includes/footer.php"; ?>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

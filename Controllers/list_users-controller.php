@@ -46,8 +46,8 @@ if (isset($_POST["searchUser"])) {
     
         if(preg_match($regexPage, $actualPage)) {
             $countUsers = $Users->countUsers();
-            $totalPages = ceil($countUsers["countUsers"] / 10);
-            $startValue = ($actualPage - 1) * 10;
+            $totalPages = ceil($countUsers["countUsers"] / 5);
+            $startValue = ($actualPage - 1) * 5;
             $allUsersInformations = $Users->getUsersPaginate($startValue);
         }
     }    

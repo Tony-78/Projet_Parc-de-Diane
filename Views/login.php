@@ -16,17 +16,15 @@ require "../Controllers/login-controller.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../Assets/css/style.css">
-    <title>Parc de Diane</title>
+    <title>Connexion - Parc de Diane</title>
 </head>
 
 <body>
 
-    <!-- Header -->
-
     <?php include "includes/navbar.php"; ?>
 
 
-    <div id="login">
+    <div class="content">
         <h3 class="text-center mt-5">Espace résidents</h3>
         <div class="container mt-5">
             <div class="row justify-content-center align-items-center">
@@ -116,9 +114,9 @@ require "../Controllers/login-controller.php";
         </div>
     </div>
 
+    <?php include "includes/footer.php"; ?>
 
-
-
+    
 
 
 

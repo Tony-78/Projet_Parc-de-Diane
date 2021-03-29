@@ -1,0 +1,4 @@
+Options +FollowSymlinks
+RewriteEngine on
+
+ErrorDocument 404 /Views/error404.php

@@ -16,169 +16,171 @@ require "../Controllers/profile_user-controller.php";
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="../Assets/css/style.css">
-    <title>Parc de Diane</title>
+    <title>Profil - Parc de Diane</title>
 </head>
 
 <body>
 
     <?php include "includes/navbar.php"; ?>
 
-    <h3 class="text-center mt-5">Paramètres du compte</h3>
-    <div class="white-divider mb-5"></div>
-    <div class="container light-style flex-grow-1 container-p-y">
-        <div class="card overflow-hidden">
-            <?php
-            if (isset($_SESSION["passwordMessage"])) {
-                if ($_SESSION["passwordMessage"] == "error") {
-            ?>
-                    <div class="container-fluid">
-                        <div class="alert alert-danger alert-dismissible fade show text-center my-3" role="alert">
-                            <p>Il y a eu une erreur lors de la modification de votre mot de passe.</p>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+    <div class="content">
+        <h3 class="text-center mt-5">Paramètres du compte</h3>
+        <div class="white-divider mb-5"></div>
+        <div class="container light-style flex-grow-1 container-p-y">
+            <div class="card overflow-hidden">
+                <?php
+                if (isset($_SESSION["passwordMessage"])) {
+                    if ($_SESSION["passwordMessage"] == "error") {
+                ?>
+                        <div class="container-fluid">
+                            <div class="alert alert-danger alert-dismissible fade show text-center my-3" role="alert">
+                                <p>Il y a eu une erreur lors de la modification de votre mot de passe.</p>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-            <?php
-                    unset($_SESSION["passwordMessage"]);
+                <?php
+                        unset($_SESSION["passwordMessage"]);
+                    }
                 }
-            }
-            ?>
-            <div class="row no-gutters row-bordered row-border-light">
-                <div class="col-md-3 pt-0">
-                    <div class="list-group list-group-flush account-settings-links">
-                        <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">Coordonnées</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Changement de mot de passe</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-announces">Mes annonces</a>
-                        <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-delete">Supprimer le compte</a>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="account-general">
-                            <?php
-                            if (isset($_SESSION["updateInfoMessage"])) {
-                                if ($_SESSION["updateInfoMessage"] == "success") {
-                            ?>
-                                    <div class="container-fluid">
-                                        <div class="alert alert-success alert-dismissible fade show text-center mt-3" role="alert">
-                                            <p>Votre profil a bien été modifié.</p>
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                <?php
-                                    unset($_SESSION["updateInfoMessage"]);
-                                } else {
-                                ?>
-                                    <div class="container-fluid">
-                                        <div class="alert alert-danger alert-dismissible fade show text-center mt-3" role="alert">
-                                            <p>Il y a eu une erreur lors de la modification de vos données.</p>
-                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                            <?php
-                                    unset($_SESSION["updateInfoMessage"]);
-                                }
-                            }
-                            ?>
-                            <form action="profile_user.php" method="post" class="form">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label class="form-label" for="lastname">Nom</label>
-                                        <input type="text" name="lastname" id="lastname" class="form-control mb-1" value="<?= $_SESSION["user"]["lastname"] ?>">
-                                        <span style="color:red;"><?= isset($arrayErrors["lastname"]) ? $arrayErrors["lastname"] : "" ?></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="firstname">Prénom</label>
-                                        <input type="text" name="firstname" id="firstname" class="form-control mb-1" value="<?= $_SESSION["user"]["firstname"] ?>">
-                                        <span style="color:red;"><?= isset($arrayErrors["firstname"]) ? $arrayErrors["firstname"] : "" ?></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="email">Adresse email</label>
-                                        <input type="email" name="email" id="email" class="form-control mb-1" value="<?= $_SESSION["user"]["mail"] ?>">
-                                        <span style="color:red;"><?= isset($arrayErrors["email"]) ? $arrayErrors["email"] : "" ?></span>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-label" for="phone">Numéro de téléphone</label>
-                                        <input type="text" name="phone" id="phone" class="form-control mb-1" value="<?= $_SESSION["user"]["tel"] ?>">
-                                        <span style="color:red;"><?= isset($arrayErrors["phone"]) ? $arrayErrors["phone"] : "" ?></span>
-                                    </div>
-                                </div>
-                                <div class="d-flex justify-content-end m-3">
-                                    <input type="submit" name="modifyInfosButton" class="btn btn-info btn-md" value="Sauvegarder">
-                                </div>
-                            </form>
+                ?>
+                <div class="row no-gutters row-bordered row-border-light">
+                    <div class="col-md-3 pt-0">
+                        <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action active" data-toggle="list" href="#account-general">Coordonnées</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-change-password">Changement de mot de passe</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-announces">Mes annonces</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list" href="#account-delete">Supprimer le compte</a>
                         </div>
-
-                        <div class="tab-pane fade show" id="account-change-password">
-                            <div class="card-body pb-2">
-                                <form action="" method="post" class="form">
-                                    <div class="row mb-4">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label">Votre mot de passe actuel</label>
-                                                <input type="password" name="actualPassword" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Votre nouveau mot de passe</label>
-                                                <input type="password" name="newPassword" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-label">Répéter le nouveau mot de passe</label>
-                                                <input type="password" name="newPasswordVerif" class="form-control">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="account-general">
+                                <?php
+                                if (isset($_SESSION["updateInfoMessage"])) {
+                                    if ($_SESSION["updateInfoMessage"] == "success") {
+                                ?>
+                                        <div class="container-fluid">
+                                            <div class="alert alert-success alert-dismissible fade show text-center mt-3" role="alert">
+                                                <p>Votre profil a bien été modifié.</p>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <p class="mb-2">Exigences relatives au mot de passe</p>
-                                            <p class="small text-muted mb-2">Pour créer un nouveau mot de passe, vous devez remplir toutes les conditions suivantes :</p>
-                                            <ul class="small text-muted pl-4 mb-0">
-                                                <li>Au moins une lettre majuscule</li>
-                                                <li>Au moins une lettre minuscule</li>
-                                                <li>Au moins un caractère spécial</li>
-                                                <li>Au moins un chiffre</li>
-                                                <li>Entre 8 et 20 caractères</li>
-                                            </ul>
+                                    <?php
+                                        unset($_SESSION["updateInfoMessage"]);
+                                    } else {
+                                    ?>
+                                        <div class="container-fluid">
+                                            <div class="alert alert-danger alert-dismissible fade show text-center mt-3" role="alert">
+                                                <p>Il y a eu une erreur lors de la modification de vos données.</p>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                <?php
+                                        unset($_SESSION["updateInfoMessage"]);
+                                    }
+                                }
+                                ?>
+                                <form action="profile_user.php" method="post" class="form">
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label class="form-label" for="lastname">Nom</label>
+                                            <input type="text" name="lastname" id="lastname" class="form-control mb-1" value="<?= $_SESSION["user"]["lastname"] ?>">
+                                            <span style="color:red;"><?= isset($arrayErrors["lastname"]) ? $arrayErrors["lastname"] : "" ?></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="firstname">Prénom</label>
+                                            <input type="text" name="firstname" id="firstname" class="form-control mb-1" value="<?= $_SESSION["user"]["firstname"] ?>">
+                                            <span style="color:red;"><?= isset($arrayErrors["firstname"]) ? $arrayErrors["firstname"] : "" ?></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="email">Adresse email</label>
+                                            <input type="email" name="email" id="email" class="form-control mb-1" value="<?= $_SESSION["user"]["mail"] ?>">
+                                            <span style="color:red;"><?= isset($arrayErrors["email"]) ? $arrayErrors["email"] : "" ?></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label" for="phone">Numéro de téléphone</label>
+                                            <input type="text" name="phone" id="phone" class="form-control mb-1" value="<?= $_SESSION["user"]["tel"] ?>">
+                                            <span style="color:red;"><?= isset($arrayErrors["phone"]) ? $arrayErrors["phone"] : "" ?></span>
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-end m-3">
-                                        <input type="submit" name="modifyPasswordButton" class="btn btn-info btn-md" value="Sauvegarder">
+                                        <input type="submit" name="modifyInfosButton" class="btn btn-info btn-md" value="Sauvegarder">
                                     </div>
                                 </form>
                             </div>
-                        </div>
 
-                        <div class="tab-pane fade" id="account-announces">
-                            <div class="card-body pb-2">
-                                <p class="mb-4">Pour consulter, modifier ou supprimer une annonce, cliquer sur le bouton ci-dessous :</p>
-                                <a class="btn btn-success ml-3" href="personal_announces.php" >Mes annonces</a>
+                            <div class="tab-pane fade show" id="account-change-password">
+                                <div class="card-body pb-2">
+                                    <form action="" method="post" class="form">
+                                        <div class="row mb-4">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Votre mot de passe actuel</label>
+                                                    <input type="password" name="actualPassword" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Votre nouveau mot de passe</label>
+                                                    <input type="password" name="newPassword" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="form-label">Répéter le nouveau mot de passe</label>
+                                                    <input type="password" name="newPasswordVerif" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <p class="mb-2">Exigences relatives au mot de passe</p>
+                                                <p class="small text-muted mb-2">Pour créer un nouveau mot de passe, vous devez remplir toutes les conditions suivantes :</p>
+                                                <ul class="small text-muted pl-4 mb-0">
+                                                    <li>Au moins une lettre majuscule</li>
+                                                    <li>Au moins une lettre minuscule</li>
+                                                    <li>Au moins un caractère spécial</li>
+                                                    <li>Au moins un chiffre</li>
+                                                    <li>Entre 8 et 20 caractères</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex justify-content-end m-3">
+                                            <input type="submit" name="modifyPasswordButton" class="btn btn-info btn-md" value="Sauvegarder">
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="tab-pane fade" id="account-delete">
-                            <div class="card-body pb-2">
-                                <p class="mb-4">Etes-vous sûr de vouloir supprimer votre compte ?</p>
-                                <button type="button" class="btn btn-danger ml-3" data-toggle="modal" data-target="#deleteAccountModal">Supprimer mon compte</button>
+                            <div class="tab-pane fade" id="account-announces">
+                                <div class="card-body pb-2">
+                                    <p class="mb-4">Pour consulter, modifier ou supprimer une annonce, cliquer sur le bouton ci-dessous :</p>
+                                    <a class="btn btn-success ml-3" href="personal_announces.php">Mes annonces</a>
+                                </div>
                             </div>
-                            <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Suppression de compte</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Attention, cette action sera irréversible !
-                                        </div>
-                                        <div class="modal-footer">
-                                            <form action="profile_user.php" method="post" class="form">
-                                                <button type="submit" class="btn btn-danger ml-3" name="deleteAccount">Supprimer mon compte</button>
-                                            </form>
+
+                            <div class="tab-pane fade" id="account-delete">
+                                <div class="card-body pb-2">
+                                    <p class="mb-4">Etes-vous sûr de vouloir supprimer votre compte ?</p>
+                                    <button type="button" class="btn btn-danger ml-3" data-toggle="modal" data-target="#deleteAccountModal">Supprimer mon compte</button>
+                                </div>
+                                <div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Suppression de compte</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Attention, cette action sera irréversible !
+                                            </div>
+                                            <div class="modal-footer">
+                                                <form action="profile_user.php" method="post" class="form">
+                                                    <button type="submit" class="btn btn-danger ml-3" name="deleteAccount">Supprimer mon compte</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -190,6 +192,7 @@ require "../Controllers/profile_user-controller.php";
         </div>
     </div>
 
+    <?php include "includes/footer.php"; ?>
 
 
 

@@ -329,7 +329,7 @@ class Users extends Database {
     
 
     /**
-     * Method used to collect 10 users based on a start value (pagination)
+     * Method used to collect 5 users based on a start value (pagination)
      * 
      * @param int
      * @return array|boolean
@@ -339,7 +339,7 @@ class Users extends Database {
         INNER JOIN `Usernames`
         ON `Usernames`.`username_id` = `Users`.`username_id`
         WHERE `Users`.`user_status_id` = 2
-        LIMIT :startValue, 10;";
+        LIMIT :startValue, 5;";
         $buildQuery = parent::getDb()->prepare($query);
         $buildQuery->bindValue("startValue", $startValue, PDO::PARAM_INT);
         $buildQuery->execute();

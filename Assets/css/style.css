@@ -4,6 +4,15 @@ html, body {
     font-family: 'Manrope', sans-serif;
 }
 
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.content {
+    flex:1;
+}
 
 /* NAVBAR */
 
@@ -56,6 +65,15 @@ html, body {
     }
     .ping-pong-volley-ball-width {
         width: 100%;
+    }
+    .presentation-sections-width {
+        width: 100%! important;
+    }
+    .sections-margin {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+        margin-left:2rem;
+        margin-right: 2rem;
     }
 }
 
@@ -231,7 +249,7 @@ html, body {
 
 
 
-/* SHOPS, ACTIVITIES & SERVICES SECTIONS */
+/* INDEX, SHOPS, ACTIVITIES & SERVICES SECTIONS */
 
 .shops-height, .activities-height, .services-height {
     background: #FFF;
@@ -375,7 +393,15 @@ html, body {
     height: 41rem;
 }
 
+.sections-margin {
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
 
+.index-sections-margin {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+}
 
 
 
@@ -432,28 +458,20 @@ html, body {
     width: auto;
 }
 
-.img-card-size {
-    margin: 1rem;
-    justify-content: center;
-    border-radius: 5px;
-    width: 25rem;
-    height: 20rem;
-}
-
-.oaoa {
+.presentation-sections {
     overflow:hidden;
     position: relative;
 }
 
-.oaoa a img {
+.presentation-sections a img {
    transition: all 0.35s;
 }
 
-.oaoa a img:hover {
+.presentation-sections a img:hover {
     filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
 }
 
-.oaoa a img:hover {
+.presentation-sections a img:hover {
     transform: scale(1.1);
     transition: all 1s ease;
 }
@@ -463,7 +481,7 @@ html, body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: white;
+    color:white;
 }
 
 
