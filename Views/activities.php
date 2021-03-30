@@ -68,8 +68,7 @@ require "../Controllers/activities-controller.php";
                         <h2>Club House</h2>
                         <div class="line"></div>
                         <p>Le Club house comprend une salle de réunion équipée d’un bar (aucune licence) et des équipements sanitaires (vestiaires, douches, toilettes).<br><br>
-                            L’usage du club-house est réservé aux copropriétaires ou locataires du parc de Diane ainsi qu’à leurs représentants (conseils syndicaux, associations) pour des raisons à caractère privé, associatif ou administratif qui ne doivent entraîner aucun trouble pour le voisinage.<br><br>
-                            XXXXXXXXXXX
+                            L’usage du club-house est réservé aux copropriétaires ou locataires du parc de Diane ainsi qu’à leurs représentants (conseils syndicaux, associations) pour des raisons à caractère privé, associatif ou administratif qui ne doivent entraîner aucun trouble pour le voisinage.
                         </p>
                     </div>
                 </div>

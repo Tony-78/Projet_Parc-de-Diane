@@ -25,7 +25,7 @@ require "../Controllers/services-controller.php";
 
     <div class="container-fluid wallpaper-services"></div>
 
-    <h4 class="text-center sections-margin">Les résidents ont la chance de disposer de quelques commerces au sein du Parc de Diane</h4>
+    <h4 class="text-center sections-margin">De nombreux services sont à la disposition des résidents.</h4>
 
     <div class="content">
         <div class="container-fluid">
@@ -130,7 +130,7 @@ require "../Controllers/services-controller.php";
                                     9h - 12h30 et 14h30 - 20h<br>
                                     9h - 12h30 et 14h30 - 20h<br>
                                     9h - 12h30 et 14h30 - 20h<br>
-                                    9h - 12h30 et 14h30 - 19h30<br>
+                                    9h - 12h30 et 14h30 - 20h<br>
                                     Fermé<br>
                                 </p>
                             </div>

@@ -123,7 +123,7 @@ require "../Controllers/shops-controller.php";
                                     9h - 12h30 et 14h30 - 20h<br>
                                     9h - 12h30 et 14h30 - 20h<br>
                                     9h - 12h30 et 14h30 - 20h<br>
-                                    9h - 12h30 et 14h30 - 19h30<br>
+                                    9h - 12h30 et 14h30 - 20h<br>
                                     Fermé<br>
                                 </p>
                             </div>
