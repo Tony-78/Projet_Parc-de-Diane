@@ -77,9 +77,11 @@ if (isset($_POST["addUser"])) {
     // USERNAME CHECK
     if (isset($_POST["username"])) {
         if (preg_match($regexUsername, $_POST["username"])) {
+            // CHECK IF A USERNAME IS AVAILABLE FOR A REGISTRATION (LIST OF USERNAMES AVAILABLE)
             if ($Usernames->verifyUserPresenceForRegister($_POST["username"])) {
+                // GET THE ID OF ONE USERNAME
                 $id = $Usernames->searchUsernameId($_POST["username"]);
-
+                // CHECK IF A USERNAME IS ALREADY CHOSEN BY SOMEONE FOR A REGISTRATION
                 if ($Usernames->verifyUsernameIdPresenceForRegister($id["username_id"])) {
                     $arrayErrors["username"] = "<i>Identifiant déjà utilisé</i>";
                 } else {

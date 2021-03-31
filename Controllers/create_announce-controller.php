@@ -59,13 +59,10 @@ if (isset($_POST["addAnnounce"])) {
             if ($fileSize <= $maxSize) {
                 // WE RENAME THE FILE WITH AN UNIQUE ID AND WE ADD ITS EXTENSION
                 $fileName = uniqid() . $extensionFile;
-                //
-                // On upload le fichier avec la fonction 'move_uploaded_file' qui comprend 2 paramètres : 
-                // - Le nom du fichier temporaire
-                // - La destination du fichier et le nom qui a été renommé précedemment
-                if (move_uploaded_file($_FILES["imgToUpload"]["tmp_name"], $repertory . $fileName)) {
-                    $scanImg = scandir("../Assets/img/img-announces");
-                }
+                // WE MOVE THE UPLOADED FILE (2 PARAMETERS)
+                //      - THE NAME OF THE UPLOADED IMG
+                //      - THE DESTINATION OF THE FILE AND THE NAME THAT WAS RENAMED PREVIOUSLY
+                move_uploaded_file($_FILES["imgToUpload"]["tmp_name"], $repertory . $fileName);
             } else {
                 $arrayErrors["imgToUpload"] = "<i>Votre fichier doit faire moins de 8 Mo, veuillez réessayer.</i>";
             }

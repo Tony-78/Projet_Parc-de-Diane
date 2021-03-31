@@ -71,33 +71,24 @@ if (isset($_POST["modifyAnnounceButton"])) {
     $extensionsType = array("image/png", "image/jpeg");
     $maxSize = (1024 * 1024) * 8;
     $repertory = "../Assets/img/img-announces/";
-    $scanImg = scandir("../Assets/img/img-announces");
 
 
-
-    // On vérifie qu'un fichier a bien été envoyé via le formulaire 'fileToUpload' et qu'il n'y a pas eu d'erreur pendant l'envoi
     if (isset($_FILES["imgToUpload"]) && $_FILES["imgToUpload"]["error"] == 0) {
-        // On récupère l'extension du fichier
+        // WE COLLECT THE FILE EXTENSION
         $extensionFile = strrchr($_FILES["imgToUpload"]["name"], ".");
-        // On récupère le type du fichier temporaire pour le comparer plus bas avec le tableau 'extensionsType'
+        // WE COLLECT THE TYPE OF THE TEMPORARY FILE TO COMPARE IT BELOW WITH THE ARRAY ($extensionsType)
         $fileType = mime_content_type($_FILES["imgToUpload"]["tmp_name"]);
-        // On vérifie que l'extension de notre fichier match avec celles autorisées dans le tableau 'extensions'
-        // Après &&, on vérifie le type match avec le tableau 'extensionsType'
         if (in_array($extensionFile, $extensions) && in_array($fileType, $extensionsType)) {
-
-            // On récupère le poids du fichier
+            // WE COLLECT THE SIZE OF THE FILE
             $fileSize = $_FILES["imgToUpload"]["size"];
-            // On compare le poids du fichier avec le max autorisé dans la variable 'maxSize'
+            // WE CHECK THE SIZE OF THE FILE WITH THE SIZE MAX ($maxSize)
             if ($fileSize <= $maxSize) {
-                // On récupère l'extension pour l'upload
-                // On renomme notre fichier avec un ID unique (un nom random) et on lui redonne son extension
+                // WE RENAME THE FILE WITH AN UNIQUE ID AND WE ADD ITS EXTENSION
                 $fileName = uniqid() . $extensionFile;
-                // On upload le fichier avec la fonction 'move_uploaded_file' qui comprend 2 paramètres : 
-                // - Le nom du fichier temporaire
-                // - La destination du fichier et le nom qui a été renommé précedemment
-                if (move_uploaded_file($_FILES["imgToUpload"]["tmp_name"], $repertory . $fileName)) {
-                    $scanImg = scandir("../Assets/img/img-announces");
-                }
+                // WE MOVE THE UPLOADED FILE (2 PARAMETERS)
+                //      - THE NAME OF THE UPLOADED IMG
+                //      - THE DESTINATION OF THE FILE AND THE NAME THAT WAS RENAMED PREVIOUSLY
+                move_uploaded_file($_FILES["imgToUpload"]["tmp_name"], $repertory . $fileName);
             } else {
                 $arrayErrors["imgToUpload"] = "<i>Votre fichier doit faire moins de 8 Mo, veuillez réessayer.</i>";
             }

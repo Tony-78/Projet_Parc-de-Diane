@@ -49,6 +49,7 @@ if (isset($_POST["connectUser"])) {
 
     // IF THE USER HAS ENTERED A USERNAME AND PASSWORD CORRESPONDING TO HIS ACCOUNT
     if (!empty($resultQuery) && isset($verifiedPassword)) {
+        // WE VERIFY IF THE PASSWORD MATCHES A HASH
         if (password_verify($verifiedPassword, $resultQuery["user_password"])) {
             $user = [];
             $user["id"] = $resultQuery["user_id"];
