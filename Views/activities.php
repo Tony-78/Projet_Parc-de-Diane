@@ -25,7 +25,7 @@ require "../Controllers/activities-controller.php";
 
     <div class="container-fluid wallpaper-activities"></div>
 
-    <h4 class="text-center sections-margin">La résidence du Parc de Diane offre de mutiples activités sportives.</h4>
+    <h5 class="text-center sections-margin">La résidence du Parc de Diane offre de mutiples activités sportives.</h5>
 
     <div class="content">
         <div class="container-fluid">

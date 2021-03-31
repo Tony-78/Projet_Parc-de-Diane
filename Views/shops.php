@@ -25,7 +25,7 @@ require "../Controllers/shops-controller.php";
 
     <div class="container-fluid wallpaper-shops"></div>
 
-    <h4 class="text-center sections-margin">Les résidents ont la chance de disposer de quelques commerces au sein du Parc de Diane.</h4>
+    <h5 class="text-center sections-margin">Les résidents ont la chance de disposer de quelques commerces au sein du Parc de Diane.</h5>
 
     <div class="content">
         <div class="container-fluid">

@@ -25,7 +25,7 @@ require "../Controllers/services-controller.php";
 
     <div class="container-fluid wallpaper-services"></div>
 
-    <h4 class="text-center sections-margin">De nombreux services sont à la disposition des résidents.</h4>
+    <h5 class="text-center sections-margin">De nombreux services sont à la disposition des résidents.</h5>
 
     <div class="content">
         <div class="container-fluid">
