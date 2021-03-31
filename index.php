@@ -21,8 +21,8 @@ require "Controllers/index-controller.php";
 
 <body>
 
-  <header class="header">
-    <nav class="navbar navbar-expand-lg d-flex">
+  <header class="header ">
+    <nav class="navbar navbar-expand-lg">
       <a class="navbar-brand logo d-flex w-50 mr-auto" href="index.php"><img src="assets/img/pdd2.png"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -30,7 +30,7 @@ require "Controllers/index-controller.php";
         </svg>
       </button>
       <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0 nav_effect">
+        <ul class="navbar-nav mb-2 mb-lg-0 nav_effect navbar-position">
           <li class="nav-item">
             <a class="nav-link" href="index.php">Accueil</a>
           </li>

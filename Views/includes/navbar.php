@@ -7,7 +7,7 @@
         </svg>
       </button>
       <div class="collapse navbar-collapse w-100" id="navbarSupportedContent">
-        <ul class="navbar-nav mb-2 mb-lg-0 nav_effect">
+        <ul class="navbar-nav mb-2 mb-lg-0 nav_effect navbar-position">
           <li class="nav-item">
             <a class="nav-link" href="../index.php">Accueil</a>
           </li>

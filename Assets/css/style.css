@@ -49,7 +49,7 @@ body {
 /* MEDIA QUERIES */
 
 /* CELLPHONES AND DIGITAL TABLETS */
-@media (max-width: 768px) { 
+@media (max-width: 1300px) { 
     .logo {
         margin-left: 0;
     }
@@ -245,7 +245,14 @@ body {
     }
 }
 
-
+/* LAPTOP */
+@media (min-width: 992px) { 
+    .navbar-position {
+        position: absolute;
+        left: 50%;
+        transform: translatex(-50%);
+    }
+}
 
 
 
